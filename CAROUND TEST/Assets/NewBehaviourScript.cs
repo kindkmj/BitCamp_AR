@@ -117,7 +117,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     private void AutoMotorForce()
     {
-        if (Input.GetKey(KeyCode.W) || (Input.GetKey(KeyCode.S)))
+        if (Input.GetKey(KeyCode.W))
         {
             if (motorForce < 1500)
             {
@@ -126,8 +126,9 @@ public class NewBehaviourScript : MonoBehaviour
         }
         else
         {
-            if (motorForce > 50)
-                motorForce -= 5f;
+            //if (motorForce > 50)
+            //    motorForce -= 5f;
+            motorForce = 0;
         }
     }
     private void TrackCheck()

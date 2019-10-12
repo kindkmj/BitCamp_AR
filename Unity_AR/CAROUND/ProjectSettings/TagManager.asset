@@ -3,7 +3,35 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Spawn
+  - TrackCheck
+  - Time
+  - Countdown
+  - Track
+  - Car
+  - WheelCollider
+  - WheelTransform
+  - Bullet
+  - ServerState
+  - NickNameInput
+  - RoomInput
+  - DisconnectPanel
+  - LobbyPanel
+  - WelcomeText
+  - LobbyInfoText
+  - CellBtn
+  - PreviousBtn
+  - NextBtn
+  - RoomPanel
+  - ListText
+  - RoomInfoText
+  - StatusText
+  - PlayGame
+  - WheelColliderF
+  - WheelColliderR
+  - WheelTransformF
+  - WheelTransformR
   layers:
   - Default
   - TransparentFX

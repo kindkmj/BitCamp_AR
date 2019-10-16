@@ -6,6 +6,14 @@ TagManager:
   tags:
   - Tire
   - Wheel
+  - PlayerCar
+  - JoyStick
+  - Canvas
+  - Timer
+  - PlayerManager
+  - CheckPoint
+  - ConditionManager
+  - CheckTransform
   layers:
   - Default
   - TransparentFX

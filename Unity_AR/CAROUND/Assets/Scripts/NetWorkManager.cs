@@ -151,7 +151,7 @@ public class NetWorkManager : MonoBehaviourPunCallbacks
             RoomInfoText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount +
                                 "명 / " + PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
-    }
+    } 
     
     [PunRPC]
     public void GameJoin()

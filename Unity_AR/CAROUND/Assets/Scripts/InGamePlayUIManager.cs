@@ -13,13 +13,13 @@ public class InGamePlayUIManager : MonoBehaviour
     private Text[] Texts;
     private Time_AA timea;
     private GameCondition GameCondition;
+    private CheckPoint checkPoint;
+    private float TrackTime = 0f;
     #endregion
 
     void Start()
     {
         GameCondition = GameObject.FindGameObjectWithTag("ConditionManager").GetComponent<GameCondition>();
-        GameCondition.InitCheckPointCondition();
-
         timea = GameObject.FindWithTag("Timer").GetComponent<Time_AA>();
         Texts = GameObject.FindWithTag("Canvas").GetComponentsInChildren<Text>();
         for (int i = 0; i < Texts.Length; i++)
@@ -34,44 +34,38 @@ public class InGamePlayUIManager : MonoBehaviour
             }
         }
     }
-
     // Update is called once per frame
     void Update()
     {
-        Condition();
+        CountDown();
     }
-
     #region Event
-
-
     #endregion
     #region Function
     private void CountDown()
     {
         CountDownText.text = timea.CountDownTime;
+        Condition();
     }
     private void Condition()
     {
-        for (int i = 0; i < GameCondition.CheckPointCondition.Length; i++)
+        if (GameCondition.TrackCount == 3)
         {
-            Debug.Log(i);
-            if (GameCondition.CheckPointCondition[i] != true)
-            {
-                CountDown();
-                RankText.text = $"{GameCondition.TrackCount.ToString()} / 3 ";
-                return;
-            }
-            else if(GameCondition.TrackCount >= 3) GameOver();
-            else if (GameCondition.TrackCount < 3 && GameCondition.CheckPointCondition[GameCondition.CheckPointCondition.Length-1]==true)
-            {
-                GameCondition.InitCheckPointCondition();
-            }
+            RankText.text = GameCondition.TrackCount.ToString();
+            GameOver();
+        }
+        else
+        {
+            RankText.text = GameCondition.TrackCount.ToString();
         }
     }
 
     private void GameOver()
     {
+        timea.CountFlag = false;
+        TrackTime = float.Parse(timea.CountDownTime);
         CountDownText.text = "게임 종료!";
+        Debug.Log(TrackTime);
     }
     #endregion
 }

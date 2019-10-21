@@ -9,7 +9,7 @@ public class Time_AA : MonoBehaviour
     #region Variable
     public string CountDownTime { get;  private set; }
     private float CountDownTimer { get; set; } = 3f;
-    private bool CountFlag = false;
+    public bool CountFlag = false;
     private GameObject PlayerCars;
     #endregion
     void Start()
@@ -56,9 +56,8 @@ public class Time_AA : MonoBehaviour
     {
         try
         {
-        CountDownTimer += Time.deltaTime;
+            CountDownTimer += Time.deltaTime;
             CountDownTime = CountDownTimer.ToString();
-
         }
         catch (Exception e)
         {

@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
+<<<<<<< HEAD
   - Spawn
   - TrackCheck
   - Time
@@ -32,6 +33,18 @@ TagManager:
   - WheelColliderR
   - WheelTransformF
   - WheelTransformR
+=======
+  - Tire
+  - Wheel
+  - PlayerCar
+  - JoyStick
+  - Canvas
+  - Timer
+  - PlayerManager
+  - CheckPoint
+  - ConditionManager
+  - CheckTransform
+>>>>>>> Kim_Branch
   layers:
   - Default
   - TransparentFX

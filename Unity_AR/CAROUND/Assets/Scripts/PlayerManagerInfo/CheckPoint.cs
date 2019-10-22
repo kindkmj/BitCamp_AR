@@ -8,6 +8,7 @@ public class CheckPoint : MonoBehaviour
 {
     private GameCondition gameCondition;
     private List<GameObject> CheckPointKeyList;
+//    private Ranking Rank;
 
     private void Start()
     {
@@ -36,10 +37,7 @@ public class CheckPoint : MonoBehaviour
     {
         for (int i = 0; i < CheckPointKeyList.Count; i++)
         {
-            if (gameCondition.CheckPointDictionary[CheckPointKeyList[i]] == true)
-            {
-            }
-            else
+            if (gameCondition.CheckPointDictionary[CheckPointKeyList[i]] != true)
             {
                 return false;
             }

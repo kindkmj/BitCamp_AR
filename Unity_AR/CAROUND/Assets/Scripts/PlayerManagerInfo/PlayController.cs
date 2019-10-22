@@ -16,7 +16,7 @@ public class PlayController : MonoBehaviour
     private int WheelAndTireTransformCount = 4;
     private float m_steeringAngle;
     private Vector3 passPosition;
-    float motorForce = 1000f;
+    float motorForce = 100f;
     private GameObject MyCar;
     private Rigidbody rigidbody;
     public bool Test = false;
@@ -108,10 +108,10 @@ public class PlayController : MonoBehaviour
         float m_horizontalInput = VariableJoystick.Horizontal;
         float m_verticalInput = VariableJoystick.Vertical;
         float m_handBreak = Input.GetAxis("Jump");
-        PlayerWheels[0].motorTorque = m_verticalInput * motorForce;
-        PlayerWheels[1].motorTorque = m_verticalInput * motorForce;
-        PlayerWheels[0].brakeTorque = m_handBreak * motorForce * 3;
-        PlayerWheels[1].brakeTorque = m_handBreak * motorForce * 3;
+        PlayerWheels[0].motorTorque = m_verticalInput * motorForce*Time.deltaTime;
+        PlayerWheels[1].motorTorque = m_verticalInput * motorForce*Time.deltaTime;
+        PlayerWheels[0].brakeTorque = m_handBreak * motorForce * 3*Time.deltaTime;
+        PlayerWheels[1].brakeTorque = m_handBreak * motorForce * 3*Time.deltaTime;
         m_steeringAngle = 30 * m_horizontalInput;
         PlayerWheels[0].steerAngle = m_steeringAngle;
         PlayerWheels[1].steerAngle = m_steeringAngle;

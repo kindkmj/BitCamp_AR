@@ -2,63 +2,105 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using UnityEngine;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public class SelectModel : MonoBehaviour
 {
-    private Image thisImage;
+    private Image[] thisImage;
     public GameObject gameObject;
-
+    public Object ViewPartObject;
     public string SpriteName;
+    private GameObject TouchScreenGameObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        thisImage = GetComponent<Image>();
+        thisImage = GetComponentsInChildren<Image>();
+        TouchScreenGameObject = GameObject.Find("");
     }
 
-    public void DebugName()
+    public void Inis(int Index)
     {
-        Debug.Log(this.thisImage.sprite.name);
+        SpriteName=thisImage[Index].sprite.name;
+        ViewPartImg();
     }
 
-    public void Inis()
+    private void ViewPartImg()
     {
-        Debug.Log(this.thisImage.sprite.name.ToUpper());
-        SpriteName = thisImage.sprite.name;
+        string FirstText="";
+        string LastText="";
         if (SpriteName.Trim().ToUpper().StartsWith("DE"))
         {
-            InitCar(SpriteName.Remove(9),SpriteName.Remove(0, 10));
+            ViewCarParts(out FirstText, out LastText);
         }
-//        else if (SpriteName.Trim().ToUpper().StartsWith("F1"))
-//        {
-//            SpriteName = SpriteName.Remove(0, 7);
-//            InitCar(SpriteName);
-//        }
-//        else if (SpriteName.Trim().ToUpper().StartsWith("OF"))
-//        {
-//            SpriteName = SpriteName.Remove(0, 13);
-//            InitCar(SpriteName);
-//        }
-//        else if (SpriteName.Trim().ToUpper().StartsWith("RA"))
-//        {
-//            SpriteName = SpriteName.Remove(0, 12);
-//            InitCar(SpriteName);
-//        }
-//        else if (SpriteName.Trim().ToUpper().StartsWith("ST"))
-//        {
-//            SpriteName = SpriteName.Remove(0, 10);
-//            InitCar(SpriteName);
-//        }
-//        else if (SpriteName.Trim().ToUpper().StartsWith("SU"))
-//        {
-//            SpriteName = SpriteName.Remove(0, 13);
-//            InitCar(SpriteName);
-//        }
+        else if (SpriteName.Trim().ToUpper().StartsWith("F1"))
+        {
+            ViewCarParts(out FirstText, out LastText);
+        }
+        else if (SpriteName.Trim().ToUpper().StartsWith("OF"))
+        {
+            ViewCarParts(out FirstText, out LastText);
+        }
+        else if (SpriteName.Trim().ToUpper().StartsWith("RA"))
+        {
+            ViewCarParts(out FirstText, out LastText);
+        }
+        else if (SpriteName.Trim().ToUpper().StartsWith("ST"))
+        {
+            ViewCarParts(out FirstText, out LastText);
+        }
+        else if (SpriteName.Trim().ToUpper().StartsWith("SU"))
+        {
+            ViewCarParts(out FirstText, out LastText);
+        }
+    }
 
-        //key로 대분류를 찾은뒤 value가 name과 같은 놈을 소환시켜야함.
+    private void ViewCarParts(out string FirstText, out string LastText)
+    {
+        FirstText = "";
+        LastText = "";
+        TextDivision(SpriteName, ref FirstText, ref LastText);
+        InitCar(FirstText, LastText);
+    }
+
+    private void TextDivision(string ChangeText, ref string FirstText, ref string LastText)
+    {
+        bool Division = true;
+
+        for (int i = 0; i < ChangeText.Length; i++)
+        {
+            if (Division == true)
+            {
+                if (ChangeText[i].ToString() != "_")
+                {
+                    FirstText = FirstText + ChangeText[i];
+                }
+                else if (ChangeText[i].ToString() == "_")
+                {
+                    Division = false;
+                }
+            }
+        }
+        ChangeText = ChangeText.Remove(0, FirstText.Length + 1);
+        for (int i = 0; i < ChangeText.Length; i++)
+        {
+            LastText = LastText + ChangeText[i];
+        }
+    }
+
+    string LetterDivision(string text)
+    {
+        for (int i = 0; i < text.Length; i++)
+        {
+            if (text[i].ToString() == "_")
+            {
+
+            }
+        }
+        return text;
     }
 
     void InitCar(string _SpriteName,string _Name)
@@ -77,9 +119,18 @@ public class SelectModel : MonoBehaviour
                 {
                     if (carlist[j].Value[k].name == _Name)
                     {
-                        Instantiate(carlist[j].Value[k], tr, Quaternion.identity);
-                        //TouchScreen 에 있는 게임오브젝트에 생성되는 객체를 넣어주어야 함 
-                        return;
+                        if (ViewPartObject == null)
+                        {
+                            ViewPartObject = Instantiate(carlist[j].Value[k], tr, Quaternion.identity);
+                            //TouchScreen 에 있는 게임오브젝트에 생성되는 객체를 넣어주어야 함 
+                            return;
+                        }
+                        else
+                        {
+                            Destroy(ViewPartObject);
+                            ViewPartObject = Instantiate(carlist[j].Value[k], tr, Quaternion.identity);
+                            return;
+                        }
                     }
                 }
             }

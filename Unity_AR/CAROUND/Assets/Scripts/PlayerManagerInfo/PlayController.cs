@@ -16,7 +16,8 @@ public class PlayController : MonoBehaviour
     private int WheelAndTireTransformCount = 4;
     private float m_steeringAngle;
     private Vector3 passPosition;
-    float motorForce = 100f;
+    [SerializeField]
+    private float motorForce = 100f;
     private GameObject MyCar;
     private Rigidbody rigidbody;
     public bool Test = false;

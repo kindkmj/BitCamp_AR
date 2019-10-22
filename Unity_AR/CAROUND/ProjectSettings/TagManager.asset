@@ -4,36 +4,6 @@
 TagManager:
   serializedVersion: 2
   tags:
-<<<<<<< HEAD
-  - Spawn
-  - TrackCheck
-  - Time
-  - Countdown
-  - Track
-  - Car
-  - WheelCollider
-  - WheelTransform
-  - Bullet
-  - ServerState
-  - NickNameInput
-  - RoomInput
-  - DisconnectPanel
-  - LobbyPanel
-  - WelcomeText
-  - LobbyInfoText
-  - CellBtn
-  - PreviousBtn
-  - NextBtn
-  - RoomPanel
-  - ListText
-  - RoomInfoText
-  - StatusText
-  - PlayGame
-  - WheelColliderF
-  - WheelColliderR
-  - WheelTransformF
-  - WheelTransformR
-=======
   - Tire
   - Wheel
   - PlayerCar
@@ -44,7 +14,6 @@ TagManager:
   - CheckPoint
   - ConditionManager
   - CheckTransform
->>>>>>> Kim_Branch
   layers:
   - Default
   - TransparentFX

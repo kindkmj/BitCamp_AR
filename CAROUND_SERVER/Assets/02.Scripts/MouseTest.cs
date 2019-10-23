@@ -17,7 +17,6 @@ public class MouseTest : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        Debug.Log(this.transform.name);
         roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         //RoomPlayerList = GameObject.Find("RoomPlayerList").GetComponent<Text>();
         //RoomB = transform.GetChild(0).GetComponent<Text>();

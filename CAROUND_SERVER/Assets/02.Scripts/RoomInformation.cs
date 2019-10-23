@@ -9,10 +9,13 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
-using Random = UnityEngine.Random;
 
 public class RoomInformation : MonoBehaviourPunCallbacks
 {
+    private PlayFabManager playfabmanager;
+    [Header("Login")]
+    private GameObject Login;
+
     [Header("Lobby")]
     private GameObject Lobby;
     private GameObject[] RoomButtons_test;
@@ -49,7 +52,9 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     }
     void Start()
     {
+        playfabmanager = GameObject.Find("PlayFabManager").GetComponent<PlayFabManager>();
 
+        Login = GameObject.FindWithTag("Login");
         Lobby = GameObject.FindWithTag("Lobby");
         RoomCreate = GameObject.FindWithTag("RoomCreate");
         Room = GameObject.FindWithTag("Room");
@@ -64,11 +69,10 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         for(int i=0;i<4;i++)
             bReadyCheck[i] = false;
 
+        Lobby.SetActive(false);
         Room.SetActive(false);
         RoomInside.SetActive(false);
         RoomCreate.SetActive(false);
-        Debug.Log(RoomButtons.Length);
-        Debug.Log(CurrentRoomList.Count);
         for (int i = 0; i < 2; i++)
         {
             LobbyButtons[i].interactable = false;
@@ -86,7 +90,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public void Connect()
     {
         PhotonNetwork.ConnectUsingSettings();
-        PhotonNetwork.NickName = Random.Range(1, 100).ToString();
+        PhotonNetwork.NickName = playfabmanager.UserNickname;
+        Debug.Log(playfabmanager.UserNickname);
     }
 
     public override void OnConnectedToMaster()
@@ -102,6 +107,11 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         CurrentRoomList.Clear();
+        Lobby.SetActive(true);
+        RoomInside.SetActive(false);
+        RoomCreate.SetActive(false);
+        Login.SetActive(false);
+        Room.SetActive(false);
     }
     #endregion
 
@@ -120,9 +130,11 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(PhotonNetwork.NickName+"님의 방", new RoomOptions { MaxPlayers = 4 });
+
         Lobby.SetActive(false);
         RoomInside.SetActive(false);
         RoomCreate.SetActive(false);
+        Login.SetActive(false);
 
     }
 
@@ -142,6 +154,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         RoomInside.SetActive(false);
         RoomCreate.SetActive(true);
         Room.SetActive(false);
+        Login.SetActive(false);
+
     }
     public void SetRoomName(string text)
     {
@@ -154,13 +168,14 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         Room.SetActive(true);
         Lobby.SetActive(false);
         RoomCreate.SetActive(false);
+        Login.SetActive(false);
+
 
         RoomRenewal();
 
     }
     public void JoinRoom()
     {
-        Debug.Log(SelectRoomName.ToString().Trim());
         if(SelectRoomName.ToString().Trim()!=string.Empty)
         PhotonNetwork.JoinRoom(SelectRoomName.ToString().Trim(), null);
     }
@@ -170,6 +185,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         Room.SetActive(false);
         RoomInside.SetActive(true);
         RoomCreate.SetActive(false);
+        Login.SetActive(false);
+
 
         RoomRenewal();
         //if (PhotonNetwork.CurrentRoom.SetMasterClient())
@@ -212,7 +229,6 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         {
             try
             {
-                    Debug.Log(CurrentRoomList.Count);
                 if (CurrentRoomList[i] == null)
                     return;
                 RoomButtons[i].interactable = ((i < CurrentRoomList.Count) || ((int)CurrentRoomList[i].PlayerCount != 4))
@@ -269,6 +285,9 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         Room.SetActive(false);
         Lobby.SetActive(true);
         RoomInside.SetActive(false);
+        Login.SetActive(false);
+
+
         PhotonNetwork.LeaveRoom();
         RoomRenewal();
     }

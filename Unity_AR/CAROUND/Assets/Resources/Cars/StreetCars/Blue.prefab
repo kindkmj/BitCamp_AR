@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 7840998196501833317}
   - component: {fileID: 7840998196499049597}
   - component: {fileID: 7840998196500090069}
+  - component: {fileID: 3417322971725499149}
   m_Layer: 0
   m_Name: Blue
   m_TagString: PlayerCar
@@ -238,6 +239,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &3417322971725499149
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7840998196502266531}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7840998196502277995
 GameObject:
   m_ObjectHideFlags: 0

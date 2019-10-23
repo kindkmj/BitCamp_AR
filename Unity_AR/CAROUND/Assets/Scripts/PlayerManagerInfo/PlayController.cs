@@ -16,7 +16,7 @@ public class PlayController : MonoBehaviour
     private int WheelAndTireTransformCount = 4;
     private float m_steeringAngle;
     private Vector3 passPosition;
-    float motorForce = 100f;
+    private float motorForce = 10001f;
     private GameObject MyCar;
     private Rigidbody rigidbody;
     public bool Test = false;
@@ -43,6 +43,7 @@ public class PlayController : MonoBehaviour
             WheelCollider[] DefalutWheelColliders = null;
             Transform[] DefalutTranforms = null;
 
+            //차량 생성시 태그를 PlayerCar로 변경해주어야함
             MyCar = GameObject.FindWithTag("PlayerCar");
             InitWheelAndTireName();
             InitComponents("W", WheelList, MyCar, ref PlayerWheels, ref DefalutTranforms);

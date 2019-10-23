@@ -167,6 +167,7 @@ GameObject:
   - component: {fileID: 6408958782506626625}
   - component: {fileID: 6408958782505330717}
   - component: {fileID: 6408958782504661639}
+  - component: {fileID: 6713595684245987597}
   m_Layer: 0
   m_Name: LightBlue
   m_TagString: PlayerCar
@@ -238,6 +239,22 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!54 &6713595684245987597
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6408958782506398445}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &6408958782506439785
 GameObject:
   m_ObjectHideFlags: 0

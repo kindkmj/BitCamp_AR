@@ -15,6 +15,7 @@ public class PlayFabManager : MonoBehaviour
     public Text LogText;
     public string UserNickname;
     private string StatText;
+    private string teststring;
     //private Text StatText;
     private RoomInformation roomInformation;
 
@@ -26,12 +27,33 @@ public class PlayFabManager : MonoBehaviour
     public void Login()
     {
         var request = new LoginWithEmailAddressRequest { Email = EmailInput.text, Password = PasswordInput.text };
-        // 플레이팹에서 회원정보 중 username을 빼와서 UserNickname에 저장
-        // 이후 roomInformation 클래스에서 사용 예정(방 만들때)
-        PlayFabClientAPI.LoginWithEmailAddress(request, (result) => { print("로그인 성공"); roomInformation.Connect(); }, (error) => print("로그인 실패"));
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnLoginSuccess 
+         ,(error) => print("로그인 실패"));
+
 
     }
+    private void OnLoginSuccess(LoginResult result)
+    {
+        print("로그인 성공");
+        var request = new GetAccountInfoRequest { Email = EmailInput.text };
+        PlayFabClientAPI.GetAccountInfo(request, GetAccountSuccess,(error) => print("실패"));
+    }
+    private void GetAccountSuccess(GetAccountInfoResult result)
+    {
+        print("Accout를 정상적으로 받아옴");
+        UserNickname = result.AccountInfo.Username;
+        Debug.Log(UserNickname);
+        roomInformation.Connect();
+    }
 
+
+    public void av()
+    {
+        var request3 = new GetAccountInfoRequest { Email = EmailInput.text };
+        PlayFabClientAPI.GetAccountInfo(request3, (result) => teststring = result.AccountInfo.TitleInfo.DisplayName, (error) => print("실패"));
+        //        request.
+        Debug.Log(teststring);
+    }
     public void Register()
     {
         var request = new RegisterPlayFabUserRequest { Email = EmailInput.text, Password = PasswordInput.text, Username = UsernameInput.text };
@@ -99,10 +121,10 @@ public class PlayFabManager : MonoBehaviour
         PlayFabClientAPI.UpdateUserData(request, (result) => print("데이터 저장 성공"), (error) => print("데이터 저장 실패"));
     }
 
-    //public void GetData()
-    //{
-    //    var request = new GetUserDataRequest() { PlayFabId = myID };
-    //    PlayFabClientAPI.GetUserData(request, (result) =>
-    //    { foreach (var eachData in result.Data) LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; }, (error) => print("데이터 불러오기 실패"));
-    //}
+//    public void GetData()
+//    {
+//        var request = new GetUserDataRequest() { PlayFabId = myID };
+//        PlayFabClientAPI.GetUserData(request, (result) =>
+//        { foreach (var eachData in result.Data) LogText.text += eachData.Key + " : " + eachData.Value.Value + "\n"; }, (error) => print("데이터 불러오기 실패"));
+//    }
 }

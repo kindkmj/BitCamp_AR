@@ -10020,14 +10020,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<< HEAD
-  EmailInput: {fileID: 393536489}
-  PasswordInput: {fileID: 1423914481}
-  UsernameInput: {fileID: 1535198687}
-  LogText: {fileID: 0}
-  UserNickname: 
---- !u!1 &1010299341
-=======
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
@@ -10055,7 +10047,6 @@ CanvasRenderer:
   m_GameObject: {fileID: 1572832996}
   m_CullTransparentMesh: 0
 --- !u!1 &1582909800
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10880,13 +10871,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 0
---- !u!224 &1232880178
-=======
   m_IsActive: 1
 --- !u!224 &1762196236
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11255,13 +11241,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 0
---- !u!224 &1280450582
-=======
   m_IsActive: 1
 --- !u!224 &1786016698
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11655,13 +11636,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 0
---- !u!224 &1408120447
-=======
   m_IsActive: 1
 --- !u!224 &1857300446
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12100,13 +12076,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 0
---- !u!224 &1504352339
-=======
   m_IsActive: 1
 --- !u!224 &1906522936
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12464,13 +12435,8 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-<<<<<<< HEAD
-  m_IsActive: 0
---- !u!224 &1567920027
-=======
   m_IsActive: 1
 --- !u!224 &1969156619
->>>>>>> 28be241bc006b5819241d3b31237a942a88d8e87
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

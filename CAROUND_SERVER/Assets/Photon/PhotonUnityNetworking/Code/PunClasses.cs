@@ -284,6 +284,7 @@ namespace Photon.Pun
         {
         }
 
+      
         /// <summary>
         /// Called when a previous OpJoinRoom call failed on the server.
         /// </summary>
@@ -295,6 +296,7 @@ namespace Photon.Pun
         public virtual void OnJoinRoomFailed(short returnCode, string message)
         {
         }
+     
 
         /// <summary>
         /// Called when this client created a room and entered it. OnJoinedRoom() will be called as well.
@@ -374,8 +376,12 @@ namespace Photon.Pun
         ///
         /// If you want a match to be started "actively", enable the user to signal "ready" (using OpRaiseEvent or a Custom Property).
         /// </remarks>
+     
+     
+
         public virtual void OnJoinedRoom()
         {
+
         }
 
         /// <summary>

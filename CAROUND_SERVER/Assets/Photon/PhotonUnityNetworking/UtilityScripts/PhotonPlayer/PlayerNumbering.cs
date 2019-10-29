@@ -86,10 +86,7 @@ namespace Photon.Pun.UtilityScripts
 
         #region PunBehavior Overrides
 
-        public override void OnJoinedRoom()
-        {
-            this.RefreshData();
-        }
+        
 
         public override void OnLeftRoom()
         {

@@ -15,6 +15,21 @@ TagManager:
   - GameStartButton
   - RoomCreate
   - Login
+  - PlayerCar
+  - Bullet
+  - Tire
+  - Wheel
+  - CheckPoint
+  - ConditionManager
+  - Canvas
+  - Timer
+  - PlayerManager
+  - JoyStick
+  - AppStart
+  - Register
+  - FindID
+  - FindPassWord
+  - Panel
   layers:
   - Default
   - TransparentFX

@@ -7,33 +7,38 @@ using Photon.Pun;
 using Photon.Pun.UtilityScripts;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
 public class RoomInformation : MonoBehaviourPunCallbacks
 {
+    
     private PlayFabManager playfabmanager;
+    private PanelOnOff panelonoff;
+
+   
     [Header("Login")]
-    private GameObject Login;
+    //private GameObject Login;
 
     [Header("Lobby")]
-    private GameObject Lobby;
+    //private GameObject Lobby;
     private GameObject[] RoomButtons_test;
     private Button[] LobbyButtons;
 
     [Header("RoomCreate")]
-    private GameObject RoomCreate;
+    //private GameObject RoomCreate;
     private Button RoomCreateComplete;
 
     [Header("Room")]
-    private GameObject Room;
+   // private GameObject Room;
     private Button[] RoomButtons;
 
     private Text ListText;
 
     [Header("RoomInside")]
-    private GameObject RoomInside;
-    private List<Text> PlayerNameList = new List<Text>();
+    //private GameObject RoomInside;
+    private Text[] PlayerNameArray = new Text[4];
     private Button GameStartButton;
 
     [Header("ETC")] private Text ServerState;
@@ -46,43 +51,49 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     private bool[] bReadyCheck = new bool[4];
 
+    private int MaxPlayer= 4;
+    private bool Active = false;
+    public bool MoveScene = false;
     void Awake()
     {
+        
         Screen.SetResolution(960,540,false);
     }
+
     void Start()
     {
         playfabmanager = GameObject.Find("PlayFabManager").GetComponent<PlayFabManager>();
+            panelonoff = GameObject.Find("PanelOnOff").GetComponent<PanelOnOff>();
 
-        Login = GameObject.FindWithTag("Login");
-        Lobby = GameObject.FindWithTag("Lobby");
-        RoomCreate = GameObject.FindWithTag("RoomCreate");
-        Room = GameObject.FindWithTag("Room");
-        RoomInside = GameObject.FindWithTag("RoomInside");
+            //Login = GameObject.FindWithTag("Login");
+            //Lobby = GameObject.FindWithTag("Lobby");
+            //RoomCreate = GameObject.FindWithTag("RoomCreate");
+            //Room = GameObject.FindWithTag("Room");
+            //RoomInside = GameObject.FindWithTag("RoomInside");
 
-        LobbyButtons = GameObject.Find("Lobby").GetComponentsInChildren<Button>();
-        RoomButtons = GameObject.Find("RoomList").GetComponentsInChildren<Button>();
-        GameStartButton = GameObject.FindWithTag("GameStartButton").GetComponent<Button>();
-        ServerState = GameObject.FindWithTag("ServerState").GetComponent<Text>();
-        ListText = GameObject.FindWithTag("List").GetComponent<Text>();
+            LobbyButtons = GameObject.Find("Lobby").GetComponentsInChildren<Button>();
+            RoomButtons = GameObject.Find("RoomList").GetComponentsInChildren<Button>();
+            GameStartButton = GameObject.FindWithTag("GameStartButton").GetComponent<Button>();
+            ServerState = GameObject.FindWithTag("ServerState").GetComponent<Text>();
+            ListText = GameObject.FindWithTag("List").GetComponent<Text>();
 
-        for(int i=0;i<4;i++)
-            bReadyCheck[i] = false;
+            PlayerNameArray = GameObject.Find("RoomInside").GetComponentsInChildren<Text>();
 
-        Lobby.SetActive(false);
-        Room.SetActive(false);
-        RoomInside.SetActive(false);
-        RoomCreate.SetActive(false);
-        for (int i = 0; i < 2; i++)
-        {
-            LobbyButtons[i].interactable = false;
-        }
+            for (int i = 0; i < 4; i++)
+                bReadyCheck[i] = false;
+
+
+            for (int i = 0; i < 2; i++)
+            {
+                LobbyButtons[i].interactable = false;
+            }
     }
 
 
     // Update is called once per frame
     void Update()
     {
+        if(Active==true)
         ServerState.text = PhotonNetwork.NetworkClientState.ToString();
     }
     #region 서버 접속
@@ -107,11 +118,7 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public override void OnJoinedLobby()
     {
         CurrentRoomList.Clear();
-        Lobby.SetActive(true);
-        RoomInside.SetActive(false);
-        RoomCreate.SetActive(false);
-        Login.SetActive(false);
-        Room.SetActive(false);
+        panelonoff.PanelOn("Lobby");
     }
     #endregion
 
@@ -129,14 +136,9 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(PhotonNetwork.NickName+"님의 방", new RoomOptions { MaxPlayers = 4 });
-
-        Lobby.SetActive(false);
-        RoomInside.SetActive(false);
-        RoomCreate.SetActive(false);
-        Login.SetActive(false);
-
+        PhotonNetwork.CreateRoom(PhotonNetwork.NickName+"님의 방", new RoomOptions { MaxPlayers = (byte)MaxPlayer });
     }
+
 
     //public StringBuilder GetRoomName()
     //{
@@ -150,11 +152,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     //방 만들기 설정(맵고르기)
     public void CreateRoomSetting()
     {
-        Lobby.SetActive(false);
-        RoomInside.SetActive(false);
-        RoomCreate.SetActive(true);
-        Room.SetActive(false);
-        Login.SetActive(false);
+        panelonoff.PanelOn("RoomCreate");
+
 
     }
     public void SetRoomName(string text)
@@ -165,13 +164,7 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public void Join()
     {
-        Room.SetActive(true);
-        Lobby.SetActive(false);
-        RoomCreate.SetActive(false);
-        Login.SetActive(false);
-
-
-        RoomRenewal();
+        panelonoff.PanelOn("Room");
 
     }
     public void JoinRoom()
@@ -182,40 +175,58 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
-        Room.SetActive(false);
-        RoomInside.SetActive(true);
-        RoomCreate.SetActive(false);
-        Login.SetActive(false);
-
-
-        RoomRenewal();
-        //if (PhotonNetwork.CurrentRoom.SetMasterClient())
+        panelonoff.PanelOn("RoomInside");
+        tetst();
+        PlayerNameArray[0].text=PhotonNetwork.NickName;
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
     {
         CreateRoom();
     }
+    
     #endregion
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
-        RoomRenewal();
+        RoomRenewal(newPlayer);
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        RoomRenewal();
+        RoomRenewal(otherPlayer);
     }
 
-    void RoomRenewal()
+    void tetst()
     {
-        ListText.text = "";
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
         {
             ListText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " +
                             PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
+    }
+    void RoomRenewal(Player player)
+    {
+        for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
+        {
+            ListText.text = PhotonNetwork.CurrentRoom.Name + " / " + PhotonNetwork.CurrentRoom.PlayerCount + "명 / " +
+                            PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
+        }
+
+        for (int i = 0; i < MaxPlayer; i++)
+        {
+            if (player.NickName == PlayerNameArray[i].text)
+            {
+                PlayerNameArray[i].text = string.Empty;
+                return;
+            }
+            else if (PlayerNameArray[i].text == string.Empty)
+            {
+                PlayerNameArray[i].text = player.NickName;
+                return;
+            }
+        }
+        
         if (!PhotonNetwork.IsMasterClient)
         {
             GameStartButton.interactable = false;
@@ -282,14 +293,17 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public void GoBackToLobby()
     {
-        Room.SetActive(false);
-        Lobby.SetActive(true);
-        RoomInside.SetActive(false);
-        Login.SetActive(false);
+        panelonoff.PanelOn("Lobby");
 
 
         PhotonNetwork.LeaveRoom();
-        RoomRenewal();
+        //RoomRenewal();
+        tetst();
+    }
+
+    public void GameStart()
+    {
+        PhotonNetwork.LoadLevel("GameScene");
     }
 }
  

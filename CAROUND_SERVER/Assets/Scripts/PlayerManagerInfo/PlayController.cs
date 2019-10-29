@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayController : MonoBehaviour
 {
     #region variable
+
+    private PhotonView pv;
     private readonly List<string> WheelList = new List<string>();
     private readonly List<string> TireList = new List<string>();
     public float speed;
@@ -17,15 +20,15 @@ public class PlayController : MonoBehaviour
     private float m_steeringAngle;
     private Vector3 passPosition;
     [SerializeField]
-    private float motorForce = 100f;
+    private float motorForce = 1000f;
     private GameObject MyCar;
     private Rigidbody rigidbody;
-    public bool Test = false;
+    public bool Ready = false;
     #endregion
     #region Event
     public void FixedUpdate()
     {
-        if (Test == true)
+        if (Ready == true)
         {
             MoveCar();
         }
@@ -34,12 +37,16 @@ public class PlayController : MonoBehaviour
     void Start()
     {
         InitSetUp();
+        pv = gameObject.AddComponent<PhotonView>();
     }
 
     private void InitSetUp()
     {
-        if (Test == true)
+        if (Ready == true)
         {
+            if(pv.IsMine)
+            {
+
             VariableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<Joystick>();
             WheelCollider[] DefalutWheelColliders = null;
             Transform[] DefalutTranforms = null;
@@ -50,7 +57,8 @@ public class PlayController : MonoBehaviour
             InitComponents("T", TireList, MyCar, ref DefalutWheelColliders, ref PlayerTransform);
             rigidbody = MyCar.GetComponent<Rigidbody>();
             rigidbody.centerOfMass = new Vector3(0.0f, 0.15f, -0.1f);
-            return;
+//            return;
+            }
         }
         else
         {

@@ -3430,7 +3430,7 @@ MonoBehaviour:
   PasswordInput: {fileID: 1423914481}
   UsernameInput: {fileID: 1535198687}
   LogText: {fileID: 0}
-  myID: 
+  UserNickname: 
 --- !u!1 &1010299341
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,7 +3983,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1232880178
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4362,7 +4362,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1280450582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4704,7 +4704,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1408120447
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5131,7 +5131,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1504352339
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5511,7 +5511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1567920027
 RectTransform:
   m_ObjectHideFlags: 0

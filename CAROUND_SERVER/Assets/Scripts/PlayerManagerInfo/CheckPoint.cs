@@ -7,6 +7,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     private GameCondition gameCondition;
+    private GameObject PlayerCar;
     private List<GameObject> CheckPointKeyList;
 //    private Ranking Rank;
 
@@ -30,6 +31,11 @@ public class CheckPoint : MonoBehaviour
             {
                 gameCondition.TrackCountControl();
             }
+        }
+
+        for (int i = 0; i < CheckPointKeyList.Count; i++)
+        {
+         Debug.Log(gameCondition.CheckPointDictionary[CheckPointKeyList[i]]);   
         }
     }
 

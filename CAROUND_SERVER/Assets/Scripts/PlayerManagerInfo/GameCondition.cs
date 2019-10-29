@@ -6,11 +6,11 @@ using UnityEngine;
 public class GameCondition : MonoBehaviour
 {
     #region Variable
+    public PlayerManager _playerManager;
+
     public Dictionary<GameObject,bool> CheckPointDictionary = new Dictionary<GameObject, bool>();
     private GameObject[] CheckPoint;
-    public bool[] CheckPointCondition;
-    public float TrackCount = 0f;
-    public bool TrackFlag = false;
+  
     #endregion
 
     #region Event
@@ -24,10 +24,6 @@ public class GameCondition : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        Debug.Log(TrackCount);
-    }
     #endregion
 
     #region Function
@@ -37,9 +33,19 @@ public class GameCondition : MonoBehaviour
         InitDictionary();
     }
 
+    /// <summary>
+    /// 유저가 모든 체크포인트를 진입했을 경우 해당 유저의 트랙수를 늘린뒤 트랙진입 조건을 모두 초기화시켜줌
+    /// </summary>
     public void InitDictionary()
     {
-        TrackCount++;
+        for (int i = 0; i < _playerManager.UserList.Count; i++)
+        {
+            if (_playerManager.UserList[i].GetUserName().ToString().StartsWith(PlayerInfo.Player.gameObject.name))
+            {
+                int index = _playerManager.UserList[i].GetCheckPointCount();
+                _playerManager.UserList[i].SetCheckPointCount(++index);
+            }
+        }
         var list = CheckPointDictionary.Keys.ToList();
         for (int i = 0; i < list.Count; i++)
         {

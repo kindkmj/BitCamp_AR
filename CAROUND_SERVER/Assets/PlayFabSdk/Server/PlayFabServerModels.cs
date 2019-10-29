@@ -2980,7 +2980,7 @@ namespace PlayFab.ServerModels
     public class GetSegmentResult : PlayFabBaseModel
     {
         /// <summary>
-        /// Identifier of the segments AB Test, if it is attached to one.
+        /// Identifier of the segments AB Ready, if it is attached to one.
         /// </summary>
         public string ABTestParent;
         /// <summary>

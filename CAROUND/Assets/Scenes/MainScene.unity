@@ -445,7 +445,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PV: {fileID: 0}
+  UserText: {fileID: 0}
   MoveScene: 0
+  MyName: 
 --- !u!4 &676309150
 Transform:
   m_ObjectHideFlags: 0
@@ -747,6 +749,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1415524088}
     m_Modifications:
+    - target: {fileID: 4610140038679517523, guid: 845ce4699f28c9b4ba74411c629dfb89,
+        type: 3}
+      propertyPath: viewIdField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 495115757347539144, guid: 845ce4699f28c9b4ba74411c629dfb89,
         type: 3}
       propertyPath: m_Name

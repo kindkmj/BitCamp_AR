@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PanelOnOff : MonoBehaviour
+public class PanelOnOff : InitRoomScene
 {
     //private GameObject Login;
     //private GameObject Lobby;

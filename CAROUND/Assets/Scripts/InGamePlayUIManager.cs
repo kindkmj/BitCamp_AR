@@ -12,7 +12,7 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
 
     public PhotonView pv;
     private Text CountDownText;
-    public PlayerManager _playerManager;
+    //public PlayerManager _playerManager;
 
     //게임종료시 표현해주는 ui
     public GameObject RewardUI;
@@ -29,6 +29,7 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     private GameCondition GameCondition;
     private CheckPoint checkPoint;
     private float TrackTime = 0f;
+    private RoomInformation _roomInformation;
 
     private bool Ready = false;
 
@@ -36,8 +37,9 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         pv = GetComponent<PhotonView>();
-        _playerManager.initPlayerInfo();
+        //_playerManager.initPlayerInfo();
         GameCondition = GameObject.FindGameObjectWithTag("ConditionManager").GetComponent<GameCondition>();
         timea = GameObject.FindWithTag("Timer").GetComponent<Time_AA>();
         Texts = GameObject.FindWithTag("Canvas").GetComponentsInChildren<Text>();
@@ -72,22 +74,22 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     private void CountDown()
     {
         CountDownText.text = timea.CountDownTime;
-//        Condition();
+        Condition();
     }
     /// <summary>
     /// 유저가 게임이 종료되었는지 유저의 현재 바퀴수가 3일경우 게임 종료
     /// </summary>
     private void Condition()
     {
-        for (int i = 0; i < _playerManager.UserList.Count; i++)
+        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
         {
-            if (_playerManager.UserList[i].GetCheckPointCount() == 3)
+            if (_roomInformation.userInfoList[i].GetCheckPointCount() == 3)
             {
-                TrackText.text = _playerManager.UserList[i].GetCheckPointCount().ToString();
+                TrackText.text = _roomInformation.userInfoList[i].GetCheckPointCount().ToString();
             }
             else
             {
-                TrackText.text = _playerManager.UserList[i].GetCheckPointCount().ToString();
+                TrackText.text = _roomInformation.userInfoList[i].GetCheckPointCount().ToString();
             }
         }
     }
@@ -98,11 +100,11 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     /// <param name="mySequence"></param>
     private void GameOver(int mySequence)
     {
-        _playerManager.UserList[mySequence].SetMyRecord(float.Parse(timea.CountDownTime));
-        _playerManager.UserList[mySequence].SetEndGame(true);
-        for (int i = 0; i < _playerManager.UserList.Count; i++)
+        _roomInformation.userInfoList[mySequence].SetMyRecord(float.Parse(timea.CountDownTime));
+        _roomInformation.userInfoList[mySequence].SetEndGame(true);
+        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
         {
-            if (_playerManager.UserList[i].GetEndGame() != true)
+            if (_roomInformation.userInfoList[i].GetEndGame() != true)
                 return;
             else
             {

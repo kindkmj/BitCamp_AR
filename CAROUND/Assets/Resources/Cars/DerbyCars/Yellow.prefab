@@ -89,6 +89,9 @@ GameObject:
   - component: {fileID: 4102125931110981883}
   - component: {fileID: 4102125931114313539}
   - component: {fileID: 4102125931113259883}
+  - component: {fileID: 3237048076942535957}
+  - component: {fileID: 5206146289566713318}
+  - component: {fileID: 4506795042152146513}
   m_Layer: 0
   m_Name: Yellow
   m_TagString: PlayerCar
@@ -160,6 +163,47 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &3237048076942535957
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102125931111225561}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.3261147, y: 1.9657211, z: 7.864523}
+  m_Center: {x: 0.0000019073486, y: 1.2467251, z: 0.0000104904175}
+--- !u!114 &5206146289566713318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102125931111225561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8209dd1c84467f54fb50c5903c2aa18a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4506795042152146513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4102125931111225561}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a6ca32f69511e034c8f43798a92ad9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inGamePlayUiManager: {fileID: 0}
+  rankingManager: {fileID: 0}
+  GameCondition: {fileID: 0}
+  playerIndex: 0
 --- !u!1 &4102125931111266731
 GameObject:
   m_ObjectHideFlags: 0

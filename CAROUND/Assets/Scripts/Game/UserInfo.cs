@@ -11,19 +11,30 @@ public class UserInfo
     //Rank는 유저의 랭킹을 표현
     //EndGame은 해당 유저의 경기가 끝이 낫는지 체크
     //EndDistance는 3바퀴를 돌았을때의 시간초?
-    private GameObject UserName;
+    private string UserName;
     private int CheckPointCount = 0;
     private float CheckDistance = 0;
     private float Rank = 0;
     private bool EndGame;
     private float EndDistance;
+    private string CarName;
     public Dictionary<GameObject, bool> CheckPointDictionary = new Dictionary<GameObject, bool>();
 
-    public UserInfo(GameObject _gameObject, float _endDistance, bool _endGame)
+    public void SetCarName(string _CarName)
+    {
+        this.CarName = _CarName;
+    }
+
+    public string GetCarName()
+    {
+        return this.CarName;
+    }
+    public UserInfo(string _gameObject, float _endDistance, bool _endGame,string _CarName)
     {
         UserName = _gameObject;
         EndDistance = _endDistance;
         EndGame = _endGame;
+        CarName = _CarName;
     }
 
     public float GetMyRecord()
@@ -52,7 +63,7 @@ public class UserInfo
     {
         Rank = _rank;
     }
-    public GameObject GetUserName()
+    public string GetUserName()
     {
         return UserName;
     }

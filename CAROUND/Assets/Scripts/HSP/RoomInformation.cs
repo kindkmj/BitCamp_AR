@@ -11,7 +11,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
-public class RoomInformation : MonoBehaviourPunCallbacks
+public class RoomInformation : InitRoomScene,IPunObservable
 {
     
     private PlayFabManager playfabmanager;
@@ -45,6 +45,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public PhotonView PV;
 
+    public Text UserText;
+
     private List<RoomInfo> CurrentRoomList = new List<RoomInfo>();
     private int multiple;
     StringBuilder SelectRoomName = new StringBuilder();
@@ -54,9 +56,14 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     private int MaxPlayer= 4;
     private bool Active = false;
     public bool MoveScene = false;
+    public List<UserInfo> userInfoList = new List<UserInfo>();
+    private bool bRoomManager = false;
+    public string MyName;
+    bool a = false;
+
     void Awake()
     {
-        
+        DontDestroyOnLoad(this);
         Screen.SetResolution(960,540,false);
     }
 
@@ -128,7 +135,10 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         PhotonNetwork.Disconnect();
     }
 
-
+    public void UserCountcheck()
+    {
+        UserText.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+    }
 
 
 
@@ -137,6 +147,9 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public void CreateRoom()
     {
         PhotonNetwork.CreateRoom(PhotonNetwork.NickName+"님의 방", new RoomOptions { MaxPlayers = (byte)MaxPlayer });
+        userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
+        PlayerNameArray[0].text = PhotonNetwork.NickName;
+        bRoomManager = true;
     }
 
 
@@ -176,8 +189,9 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         panelonoff.PanelOn("RoomInside");
+        //userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
+        MyName = PhotonNetwork.NickName;
         tetst();
-        PlayerNameArray[0].text=PhotonNetwork.NickName;
     }
 
     public override void OnCreateRoomFailed(short returnCode, string message)
@@ -190,6 +204,8 @@ public class RoomInformation : MonoBehaviourPunCallbacks
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         RoomRenewal(newPlayer);
+        SaveData(userInfoList);
+        
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -217,12 +233,21 @@ public class RoomInformation : MonoBehaviourPunCallbacks
         {
             if (player.NickName == PlayerNameArray[i].text)
             {
+                int index = 0;
                 PlayerNameArray[i].text = string.Empty;
+                for (int j = 0; j < userInfoList.Count; j++)
+                {
+                    if (userInfoList[j].GetUserName() == player.NickName)
+                        index = j;
+
+                }
+                userInfoList.RemoveAt(index);
                 return;
             }
             else if (PlayerNameArray[i].text == string.Empty)
             {
                 PlayerNameArray[i].text = player.NickName;
+                userInfoList.Add(new UserInfo(player.NickName, 0, false,"DerbyCars"));
                 return;
             }
         }
@@ -303,7 +328,52 @@ public class RoomInformation : MonoBehaviourPunCallbacks
 
     public void GameStart()
     {
+        
+        photonView.RPC("gamescence",RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void gamescence()
+    {
         PhotonNetwork.LoadLevel("GameScene");
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting&&PhotonNetwork.IsMasterClient)
+        {
+                stream.SendNext(userInfoList);
+        }
+        else
+        {
+                userInfoList = (List<UserInfo>)stream.ReceiveNext();
+        }
+    }
+
+    [PunRPC]
+    public void SaveData(List<UserInfo> userlist)
+    {
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < userlist.Count; i++)
+            {
+                userInfoList.Add(userlist[i]);
+            }
+            photonView.RPC("SaveData", RpcTarget.Others, userInfoList);
+        }
+
+        //photonView.RPC("SaveData", RpcTarget.Others, userlist);
+    }
+
+    /*
+    [PunRPC]
+    public void DeleteData(List<UserInfo> userlist)
+    {
+
+    }
+    */
+    public void SendList()
+    {
     }
 }
  

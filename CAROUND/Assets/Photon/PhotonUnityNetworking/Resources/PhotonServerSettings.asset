@@ -34,5 +34,7 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - gamescence
+  - SaveData
   DisableAutoOpenWizard: 1
   ShowSettings: 0

@@ -6,10 +6,11 @@ using UnityEngine;
 public class GameCondition : MonoBehaviour
 {
     #region Variable
-    public PlayerManager _playerManager;
+    //public PlayerManager _playerManager;
 
     public Dictionary<GameObject,bool> CheckPointDictionary = new Dictionary<GameObject, bool>();
     private GameObject[] CheckPoint;
+    private RoomInformation _roomInformation;
   
     #endregion
 
@@ -17,6 +18,7 @@ public class GameCondition : MonoBehaviour
 
     private void Start()
     {
+        _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         CheckPoint = GameObject.FindGameObjectsWithTag("CheckPoint");
         for (int i = 0; i < CheckPoint.Length; i++)
         {
@@ -28,6 +30,7 @@ public class GameCondition : MonoBehaviour
 
     #region Function
 
+    
     public void TrackCountControl()
     {
         InitDictionary();
@@ -38,12 +41,12 @@ public class GameCondition : MonoBehaviour
     /// </summary>
     public void InitDictionary()
     {
-        for (int i = 0; i < _playerManager.UserList.Count; i++)
+        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
         {
-            if (_playerManager.UserList[i].GetUserName().ToString().StartsWith(PlayerInfo.Player.gameObject.name))
+            if (_roomInformation.userInfoList[i].GetUserName().ToString().StartsWith(PlayerInfo.Player.gameObject.name))
             {
-                int index = _playerManager.UserList[i].GetCheckPointCount();
-                _playerManager.UserList[i].SetCheckPointCount(++index);
+                int index = _roomInformation.userInfoList[i].GetCheckPointCount();
+                _roomInformation.userInfoList[i].SetCheckPointCount(++index);
             }
         }
         var list = CheckPointDictionary.Keys.ToList();

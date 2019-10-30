@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class PlayerManager : MonoBehaviour
 {
-    private List<GameObject> PlayerList = new List<GameObject>();
+    private List<string> PlayerList = new List<string>();
     public List<UserInfo> UserList = new List<UserInfo>();
 
     private UserInfo FiUser;
@@ -41,8 +42,9 @@ public class PlayerManager : MonoBehaviour
         }
     }
     //유저의 닉네임을 add해주기.
-    public void SetPlayerInfo(GameObject _gameObject)
+    public void SetPlayerInfo(string _gameObject)
     {
         PlayerList.Add(_gameObject);
     }
 }
+*/

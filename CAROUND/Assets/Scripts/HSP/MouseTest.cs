@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class MouseTest : MonoBehaviourPunCallbacks
+public class MouseTest : InitRoomScene
 {
     private RoomInformation roomInformation;
     public Text RoomB;

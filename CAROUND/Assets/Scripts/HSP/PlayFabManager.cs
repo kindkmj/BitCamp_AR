@@ -10,7 +10,7 @@ using PlayFab.DataModels;
 using UnityEngine.UI;
 using EntityKey = PlayFab.ClientModels.EntityKey;
 
-public class PlayFabManager : MonoBehaviour
+public class PlayFabManager : InitRoomScene
 {
     private PanelOnOff panelonoff;
     [Header("Login")]

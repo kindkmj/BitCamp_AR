@@ -9,9 +9,10 @@ public class Time_AA : MonoBehaviour
     //15초의 대기시간을 주는 이유는 초기화셋팅시 필요한 시간이라고 추측함
     #region Variable
     public string CountDownTime { get;  private set; }
-    private float CountDownTimer { get; set; } = 15f;
+    private float CountDownTimer { get; set; } = 2f;
     public bool CountFlag = false;
     private GameObject PlayerCars;
+    public MapSetting map;
     #endregion
     void Start()
     {
@@ -36,6 +37,7 @@ public class Time_AA : MonoBehaviour
         else if (CountDownTimer == 0)
         {
             CountDownTime = "게임 시작!";
+            map.MapSetOK();
         }
 
         if(CountDownTime == "게임 시작!")
@@ -47,11 +49,11 @@ public class Time_AA : MonoBehaviour
         CountDownTime = CountDownTimer.ToString();
     }
 
-//    private void Test()
-//    {
-//            PlayerCars.GetComponent<PlayController>().Ready = true;
-//        CountFlag = true;
-//    }
+    private void Ready()
+    {
+            PlayerCars.GetComponent<PlayController>().Ready = true;
+        CountFlag = true;
+    }
 
     private void TimeCheck()
     {

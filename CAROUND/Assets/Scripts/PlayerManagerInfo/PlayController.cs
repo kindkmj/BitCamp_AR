@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayController : MonoBehaviour
@@ -44,25 +45,25 @@ public class PlayController : MonoBehaviour
     {
         if (Ready == true)
         {
-            if(pv.IsMine)
+            // if(pv.IsMine)
             {
 
-            VariableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<Joystick>();
-            WheelCollider[] DefalutWheelColliders = null;
-            Transform[] DefalutTranforms = null;
+                VariableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<Joystick>();
+                WheelCollider[] DefalutWheelColliders = null;
+                Transform[] DefalutTranforms = null;
 
-            MyCar = GameObject.FindWithTag("PlayerCar");
-            InitWheelAndTireName();
-            InitComponents("W", WheelList, MyCar, ref PlayerWheels, ref DefalutTranforms);
-            InitComponents("T", TireList, MyCar, ref DefalutWheelColliders, ref PlayerTransform);
-            rigidbody = MyCar.GetComponent<Rigidbody>();
-            rigidbody.centerOfMass = new Vector3(0.0f, 0.15f, -0.1f);
+                MyCar = GameObject.FindWithTag("PlayerCar");
+                InitWheelAndTireName();
+                InitComponents("W", WheelList, MyCar, ref PlayerWheels, ref DefalutTranforms);
+                InitComponents("T", TireList, MyCar, ref DefalutWheelColliders, ref PlayerTransform);
+                rigidbody = MyCar.GetComponent<Rigidbody>();
+                rigidbody.centerOfMass = new Vector3(0.0f, 0.15f, -0.1f);
 //            return;
             }
         }
         else
         {
-            Invoke("InitSetUp",1f);
+            Invoke("InitSetUp", 1f);
         }
     }
 

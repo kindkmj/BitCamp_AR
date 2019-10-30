@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.XR.WSA.Input;
 
 public class Ranking : MonoBehaviour
 {
@@ -11,14 +10,19 @@ public class Ranking : MonoBehaviour
 #region Variable
 
     public PlayerInfo PlayerInfo;
-    public PlayerManager _playerManager;
+    //public PlayerManager _playerManager;
     private Dictionary<string,float> RankInfo = new Dictionary<string, float>();
+    private RoomInformation _roomInformation;
     #endregion
 
 
- 
+
     #region Event
 
+    private void Start()
+    {
+        _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
+    }
     #endregion
 
     #region Function
@@ -28,10 +32,10 @@ public class Ranking : MonoBehaviour
     /// </summary>
     private void SetUserDistance()
     {
-        float UserDistance = _playerManager.UserList[PlayerInfo.playerIndex].GetCheckDistance();
-        float UserRank = _playerManager.UserList[PlayerInfo.playerIndex].GetRank();
+        float UserDistance = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetCheckDistance();
+        float UserRank = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetRank();
         //_playerManager.UserList[PlayerInfo.playerIndex].SetCheckDistance(PlayerInfo.MyPosition);
-        RankInfo.Add(_playerManager.UserList[PlayerInfo.playerIndex].GetUserName().ToString(), UserDistance + UserRank);
+        RankInfo.Add(_roomInformation.userInfoList[PlayerInfo.playerIndex].GetUserName().ToString(), UserDistance + UserRank);
     }
 
     /// <summary>
@@ -40,7 +44,7 @@ public class Ranking : MonoBehaviour
     /// <returns>리턴값으로 주는 List에는 유저의 순위가 저장되어 있음</returns>
     public List<string> RankingSetUp()
     {
-        int[] rank = new int[_playerManager.UserList.Count];
+        int[] rank = new int[_roomInformation.userInfoList.Count];
         List<string> RankKey = RankInfo.Keys.ToList();
         //랭킹 초기화
         for (int i = 0; i < rank.Length; i++)
@@ -48,7 +52,7 @@ public class Ranking : MonoBehaviour
             rank[i] = 1;
         }
         //실질적인 랭킹 가리는 부분
-        for (int i = 0; i < _playerManager.UserList.Count; i++)
+        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
         {
             List<float> RankValue = RankInfo.Values.ToList();
             for (int j = 0; j < RankValue.Count; j++)

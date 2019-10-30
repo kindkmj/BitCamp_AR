@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //유저의 정보와 플레이어의 정보를 나누어야함
 public class PlayerInfo : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerInfo : MonoBehaviour
     public InGamePlayUIManager inGamePlayUiManager;
     public static GameObject Player;
     public Ranking rankingManager;
-    public PlayerManager _playerManager;
+    //public PlayerManager _playerManager;
     public GameCondition GameCondition;
     public float MyPosition { get; set; } = 0f;
 
@@ -23,11 +24,13 @@ public class PlayerInfo : MonoBehaviour
     /// </summary>
     void Awake()
     {
+        if (SceneManager.GetActiveScene().name != "GameScene")
+            return;
         //Player = GameObject.FindWithTag("PlayerCar");
-        Player = this.gameObject;
+//Player = this.gameObject;
 //        Player.name 이름은 유저의 닉네임으로 설정
-        _playerManager.SetPlayerInfo(this.gameObject);
-        SetIndex(Player.name);
+        //_playerManager.SetPlayerInfo(this.gameObject);
+        //SetIndex(Player.name);
         //inGamePlayUiManager;
     }
 
@@ -35,15 +38,19 @@ public class PlayerInfo : MonoBehaviour
     // MyPosition으로 현재 거리를 계속해서 더해줌 추후에 랭킹 비교시 활용할 예정임
     void Update()
     {
+        if (SceneManager.GetActiveScene().name != "GameScene")
+            return;
         MyPosition += SetMyPosition(); //각 구간별 거리는 구함.
         if (inGamePlayUiManager.GameUI.gameObject.activeSelf)
         {
-            SetRanking();
+            //SetRanking();
         }
     }
 
+    /*
     private void SetRanking()
     {
+        //가동 안되므로 다시짜야함 으이구
         if (_playerManager.UserList.Count != 0)
         {
             float index = 1000;
@@ -59,10 +66,11 @@ public class PlayerInfo : MonoBehaviour
                 }
             }
 
-            _playerManager.UserList[playerIndex].SetRank(index);
+            _playerManager.UserList[playerIndex].SetRank(_playerManager.UserList[playerIndex].GetRank()+index);
         inGamePlayUiManager.RankText.text = _playerManager.UserList[playerIndex].GetRank().ToString();
         }
     }
+    */
     private float SetMyPosition()
     {
         float position = 0f;
@@ -77,7 +85,9 @@ public class PlayerInfo : MonoBehaviour
         }
         return position;
     }
-
+    
+    
+    /*
     private void ViewInfo()
     {
         //        inGamePlayUiManager.TrackText= 
@@ -101,4 +111,5 @@ public class PlayerInfo : MonoBehaviour
 
         }
     }
+    */
 }

@@ -170,6 +170,8 @@ GameObject:
   - component: {fileID: 495115757345310640}
   - component: {fileID: 5829539418209958836}
   - component: {fileID: 3888727805351208397}
+  - component: {fileID: 4610140038679517523}
+  - component: {fileID: -829944043084783296}
   m_Layer: 0
   m_Name: Black
   m_TagString: PlayerCar
@@ -262,8 +264,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.3261147, y: 0.74, z: 7.864523}
-  m_Center: {x: 0.0000019073486, y: 2.21, z: 0.0000104904175}
+  m_Size: {x: 3.3261147, y: 1.9657211, z: 7.864523}
+  m_Center: {x: 0.0000019073486, y: 1.2467251, z: 0.0000104904175}
 --- !u!54 &3888727805351208397
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -280,6 +282,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4610140038679517523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495115757347539144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents:
+  - {fileID: -829944043084783296}
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-829944043084783296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 495115757347539144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
 --- !u!1 &495115757347554780
 GameObject:
   m_ObjectHideFlags: 0

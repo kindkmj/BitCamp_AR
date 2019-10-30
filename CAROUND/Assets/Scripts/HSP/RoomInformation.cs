@@ -57,6 +57,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     private bool Active = false;
     public bool MoveScene = false;
     public List<UserInfo> userInfoList = new List<UserInfo>();
+    public UserInfo[] userInfoArray;
     private bool bRoomManager = false;
     public string MyName;
     bool a = false;
@@ -137,7 +138,8 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     public void UserCountcheck()
     {
-        UserText.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+        //UserText.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+        UserText.text = userInfoList.Count.ToString();
     }
 
 
@@ -204,7 +206,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         RoomRenewal(newPlayer);
-        SaveData(userInfoList);
+        //SaveData(userInfoList);
         
     }
 
@@ -221,6 +223,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
                             PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
     }
+
     void RoomRenewal(Player player)
     {
         for (int i = 0; i < PhotonNetwork.PlayerList.Length; i++)
@@ -340,16 +343,31 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting&&PhotonNetwork.IsMasterClient)
+        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
         {
-                stream.SendNext(userInfoList);
+            UserText.text = userInfoList.Count.ToString();
+
+            userInfoArray = new UserInfo[userInfoList.Count - 1];
+
+            for (int i = 0; i < userInfoArray.Length; i++)
+            {
+                userInfoArray[i] = userInfoList[i];
+            }
+            stream.SendNext(userInfoArray);
         }
         else
         {
-                userInfoList = (List<UserInfo>)stream.ReceiveNext();
+            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            userInfoArray = (UserInfo[])stream.ReceiveNext();
+
+            for (int i = 0; i < userInfoArray.Length; i++)
+            {
+                userInfoList[i] = userInfoArray[i];
+            }
         }
     }
 
+    /*
     [PunRPC]
     public void SaveData(List<UserInfo> userlist)
     {
@@ -364,6 +382,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
         //photonView.RPC("SaveData", RpcTarget.Others, userlist);
     }
+    */
 
     /*
     [PunRPC]

@@ -41,6 +41,7 @@ public class GameCondition : MonoBehaviour
     /// </summary>
     public void InitDictionary()
     {
+
         for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
         {
             if (_roomInformation.userInfoList[i].GetUserName().ToString().StartsWith(PlayerInfo.Player.gameObject.name))

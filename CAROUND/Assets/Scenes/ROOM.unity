@@ -8085,15 +8085,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 846327803}
     m_Modifications:
-    - target: {fileID: 4610140038679517523, guid: 845ce4699f28c9b4ba74411c629dfb89,
-        type: 3}
-      propertyPath: viewIdField
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 495115757347539144, guid: 845ce4699f28c9b4ba74411c629dfb89,
         type: 3}
       propertyPath: m_Name
       value: Black
+      objectReference: {fileID: 0}
+    - target: {fileID: 4610140038679517523, guid: 845ce4699f28c9b4ba74411c629dfb89,
+        type: 3}
+      propertyPath: viewIdField
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 495115757347194926, guid: 845ce4699f28c9b4ba74411c629dfb89,
         type: 3}

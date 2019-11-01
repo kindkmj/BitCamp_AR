@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using UnityEngine;
 using PlayFab;
@@ -9,17 +10,20 @@ using PlayFab.ClientModels;
 using PlayFab.DataModels;
 using UnityEngine.UI;
 using EntityKey = PlayFab.ClientModels.EntityKey;
-
+//Version 1.0
 public class PlayFabManager : InitRoomScene
 {
     private PanelOnOff panelonoff;
     [Header("Login")]
     public InputField LoginUsernameInput, LoginPasswordInput;
 
+    private Text LoginCheckText;
+
     [Header("Register")]
     public InputField RegisterUsernameInput, RegisterPasswordInput, RegisterPasswordReInput, RegisterNicknameInput,RegisterEmailInput ;
     public Text RegisterstateText,RegisterPasswordReInputState;
     private bool PasswordCheck = false;
+    public Text IdCheckText,PasswordCheckText,NickNameCheckText,EmailCheckText;
 
     public Text LogText;
     public string UserNickname;
@@ -36,10 +40,9 @@ public class PlayFabManager : InitRoomScene
     private string myID;
     public List<UserDataRecord> userDataRecords;
 
-    [Header("FindPassword")] public InputField FindPasswordUsernameInput,
-        FindPasswordEmailInput,
-        FindPasswordResetInput,
-        FindPasswordResetReInput;
+    [Header("FindPassword")]
+    public InputField FindPasswordUsernameInput,FindPasswordEmailInput,FindPasswordResetInput,FindPasswordResetReInput;
+    private Text SendEmailCheckText;
 
     private GameObject ResetPassword;
 
@@ -49,13 +52,19 @@ public class PlayFabManager : InitRoomScene
         roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         panelonoff = GameObject.Find("PanelOnOff").GetComponent<PanelOnOff>();
         ResetPassword = GameObject.Find("ResetPassword");
-
+        LoginCheckText = GameObject.Find("LoginCheck").GetComponent<Text>();
+        IdCheckText = GameObject.Find("IdCheckText").GetComponent<Text>();
+        PasswordCheckText = GameObject.Find("PasswordCheckText").GetComponent<Text>();
+        NickNameCheckText = GameObject.Find("NickNameCheckText").GetComponent<Text>();
+        EmailCheckText = GameObject.Find("EmailCheckText").GetComponent<Text>();
+        SendEmailCheckText = GameObject.Find("SendEmailCheckText").GetComponent<Text>();
     }
     public void Login()
     {
+        LoginCheckText.text = "";
         var request = new LoginWithPlayFabRequest {Username = LoginUsernameInput.text, Password = LoginPasswordInput.text};
         //var request = new LoginWithEmailAddressRequest { Username = LoginUsernameInput.text, Password = PasswordInput.text };
-        PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess,(error) => print("로그인 실패"));
+        PlayFabClientAPI.LoginWithPlayFab(request, OnLoginSuccess,(error) => LoginCheckText.text="아이디 혹은 비밀번호가 일치하지 않습니다.");
 
 
     }
@@ -91,8 +100,9 @@ public class PlayFabManager : InitRoomScene
     {
         var request = new RegisterPlayFabUserRequest
             { Email = RegisterEmailInput.text, Password = RegisterPasswordInput.text, Username = RegisterUsernameInput.text,DisplayName = RegisterNicknameInput.text};
+     
 
-        if (RegisterPasswordInput.text == RegisterPasswordReInput.text)
+       if (RegisterPasswordInput.text == RegisterPasswordReInput.text)
         {
             RegisterPasswordReInputState.text = "";
             PasswordCheck = true;
@@ -102,6 +112,8 @@ public class PlayFabManager : InitRoomScene
             RegisterPasswordReInputState.text = "비밀번호 불일치";
         }
 
+        RegisterCheck();
+
         if (PasswordCheck == true)
         {
             PlayFabClientAPI.RegisterPlayFabUser(request, (result) => RegisterstateText.text = "회원가입 성공",
@@ -110,7 +122,30 @@ public class PlayFabManager : InitRoomScene
         }
     }
 
-   
+    void RegisterCheck()
+    {
+        if (!RegisterEmailInput.text.Contains("@"))
+        {
+            EmailCheckText.text = "이메일 형식이 맞지 않습니다.";
+        }
+
+        if (RegisterPasswordInput.text.Length < 6 || RegisterPasswordInput.text.Length > 10)
+        {
+            PasswordCheckText.text = "비밀번호는 6~10자리만 가능합니다.";
+        }
+
+        if (RegisterUsernameInput.text.Length < 3 || RegisterUsernameInput.text.Length > 10)
+        {
+            IdCheckText.text = "아이디는 3~10자리만 가능합니다.";
+        }
+
+        if (RegisterNicknameInput.text.Length < 3 || RegisterNicknameInput.text.Length > 5)
+        {
+            NickNameCheckText.text = "닉네임은 3~5자리만 가능합니다.";
+        }
+
+    }
+
     public void FindId()
     {
         // var request1 = new LoginWithPlayFabRequest { Username = FindIDEmailInput.text };
@@ -132,7 +167,7 @@ public class PlayFabManager : InitRoomScene
     public void FindPassword()
     {
         var request = new SendAccountRecoveryEmailRequest { Email = FindPasswordEmailInput.text, TitleId = "BAC36" };
-        PlayFabClientAPI.SendAccountRecoveryEmail(request, (result)=> print("성공"), (error) => print("실패"));
+        PlayFabClientAPI.SendAccountRecoveryEmail(request, (result)=> SendEmailCheckText.text="이메일 전송완료", (error) => SendEmailCheckText.text = "이메일 전송실패");
 
     }
 
@@ -140,6 +175,7 @@ public class PlayFabManager : InitRoomScene
     {
     }
     public void ChangePassword()
+
     {
 
         var request = new AddUsernamePasswordRequest { Password = FindPasswordResetInput.text };
@@ -236,6 +272,7 @@ public class PlayFabManager : InitRoomScene
         panelonoff.PanelOn("Login");
         LoginUsernameInput.text = "";
         LoginPasswordInput.text = "";
+        LoginCheckText.text = "";
     }
 
     public void RegisterPanelOn()
@@ -258,7 +295,7 @@ public class PlayFabManager : InitRoomScene
     public void FindPasswordPanelOn()
     {
         panelonoff.PanelOn("FindPassword");
-        ResetPassword.SetActive(false);
+        //ResetPassword.SetActive(false);
 
     }
 

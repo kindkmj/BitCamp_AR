@@ -62,15 +62,66 @@ public class RoomInformation : InitRoomScene,IPunObservable
     public string MyName;
     bool a = false;
 
-    void Awake()
+
+    #region 변수전송 테스트 관련 항목 테스트 이후 삭제해도 무방
+
+    private List<int> playindex = new List<int>();
+    private int[] playarrindex = null;
+    private List<string> playnamelist = new List<string>();
+    private string[] playarrname = null;
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        DontDestroyOnLoad(this);
-        Screen.SetResolution(960,540,false);
+        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+        {
+            playarrname = new string[playnamelist.Count];
+            for (int i = 0; i < playarrname.Length; i++)
+            {
+                playarrname[i] = playnamelist[i];
+            }
+            playarrindex = new int[playindex.Count];
+            for (int i = 0; i < playarrindex.Length; i++)
+            {
+                playarrindex[i] = playindex[i];
+            }
+            stream.SendNext(playarrindex);
+            stream.SendNext(playarrname);
+        }
+        else
+        {
+            playarrindex = null;
+            playarrname = null;
+            playarrindex = new int[playindex.Count];
+            playarrname = new string[playnamelist.Count];
+            playarrindex = (int[]) stream.ReceiveNext();
+            playarrname = (string[]) stream.ReceiveNext();
+        }
+    }
+    public void UserCountcheck()
+    {
+        UserText.text = string.Empty;
+        for (int i = 0; i < playarrindex.Length; i++)
+        {
+            UserText.text += UserText.text+"_"+ playarrindex[i].ToString();
+        }
+
+        for (int i = 0; i < playarrname.Length; i++)
+        {
+            UserText.text += UserText.text + "_" + playarrname[i];
+        }
     }
 
-    void Start()
-    {
-        playfabmanager = GameObject.Find("PlayFabManager").GetComponent<PlayFabManager>();
+    #endregion
+
+    void Awake()
+        {
+            DontDestroyOnLoad(this);
+            Screen.SetResolution(960, 540, false);
+        }
+
+        void Start()
+        {
+            playfabmanager = GameObject.Find("PlayFabManager").GetComponent<PlayFabManager>();
             panelonoff = GameObject.Find("PanelOnOff").GetComponent<PanelOnOff>();
 
             //Login = GameObject.FindWithTag("Login");
@@ -95,16 +146,18 @@ public class RoomInformation : InitRoomScene,IPunObservable
             {
                 LobbyButtons[i].interactable = false;
             }
-    }
+        }
 
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(Active==true)
-        ServerState.text = PhotonNetwork.NetworkClientState.ToString();
-    }
-    #region 서버 접속
+        // Update is called once per frame
+        void Update()
+        {
+            if (Active == true)
+                ServerState.text = PhotonNetwork.NetworkClientState.ToString();
+        }
+
+        #region 서버 접속
+
 
     public void Connect()
     {
@@ -136,13 +189,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
         PhotonNetwork.Disconnect();
     }
 
-    public void UserCountcheck()
-    {
-        //UserText.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
-        UserText.text = userInfoList.Count.ToString();
-    }
-
-
+   
 
     #region 방 생성
 
@@ -192,6 +239,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         panelonoff.PanelOn("RoomInside");
         //userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
+        playnamelist.Add(PhotonNetwork.NickName);
         MyName = PhotonNetwork.NickName;
         tetst();
     }
@@ -250,7 +298,11 @@ public class RoomInformation : InitRoomScene,IPunObservable
             else if (PlayerNameArray[i].text == string.Empty)
             {
                 PlayerNameArray[i].text = player.NickName;
-                userInfoList.Add(new UserInfo(player.NickName, 0, false,"DerbyCars"));
+                if (PhotonNetwork.IsMasterClient)
+                {
+                    playnamelist.Add(player.NickName);
+                    userInfoList.Add(new UserInfo(player.NickName, 0, false, "DerbyCars"));
+                }
                 return;
             }
         }
@@ -258,7 +310,10 @@ public class RoomInformation : InitRoomScene,IPunObservable
         if (!PhotonNetwork.IsMasterClient)
         {
             GameStartButton.interactable = false;
+
         }
+
+
     }
 
     void MyListRenewal()
@@ -311,7 +366,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
                 CurrentRoomList.RemoveAt(CurrentRoomList.IndexOf(roomList[i]));
         }
         MyListRenewal();
-        //PhotonNetwork.
     }
 
     public void ReadyCheck()
@@ -341,32 +395,43 @@ public class RoomInformation : InitRoomScene,IPunObservable
         PhotonNetwork.LoadLevel("GameScene");
     }
 
+    /*
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting && PhotonNetwork.IsMasterClient)
         {
-            UserText.text = userInfoList.Count.ToString();
-
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
-
-            for (int i = 0; i < userInfoArray.Length; i++)
-            {
-                userInfoArray[i] = userInfoList[i];
-            }
-            stream.SendNext(userInfoArray);
+            test = "테스트 메시지전송완료";
+            stream.SendNext(test);
         }
         else
         {
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
-            userInfoArray = (UserInfo[])stream.ReceiveNext();
-
-            for (int i = 0; i < userInfoArray.Length; i++)
-            {
-                userInfoList[i] = userInfoArray[i];
-            }
+            test = (string)stream.ReceiveNext();
         }
-    }
 
+
+
+
+            //        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+            //        {
+            //            userInfoArray = new UserInfo[userInfoList.Count];
+            //            for (int i = 0; i < userInfoArray.Length; i++)
+            //            {
+            //                userInfoArray[i] = userInfoList[i];
+            //            }
+            //            stream.SendNext(userInfoArray);
+            //        }
+            //        else
+            //        {
+            //            userInfoArray = new UserInfo[userInfoList.Count];
+            //            userInfoArray = (UserInfo[])stream.ReceiveNext();
+            //
+            //            for (int i = 0; i < userInfoArray.Length; i++)
+            //            {
+            //                userInfoList[i] = userInfoArray[i];
+            //            }
+            //        }
+    }
+    */
     /*
     [PunRPC]
     public void SaveData(List<UserInfo> userlist)
@@ -391,8 +456,5 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     }
     */
-    public void SendList()
-    {
-    }
 }
  

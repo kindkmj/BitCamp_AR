@@ -10,7 +10,7 @@ using PlayFab.ClientModels;
 using PlayFab.DataModels;
 using UnityEngine.UI;
 using EntityKey = PlayFab.ClientModels.EntityKey;
-
+//Version 1.0
 public class PlayFabManager : InitRoomScene
 {
     private PanelOnOff panelonoff;
@@ -175,6 +175,7 @@ public class PlayFabManager : InitRoomScene
     {
     }
     public void ChangePassword()
+
     {
 
         var request = new AddUsernamePasswordRequest { Password = FindPasswordResetInput.text };

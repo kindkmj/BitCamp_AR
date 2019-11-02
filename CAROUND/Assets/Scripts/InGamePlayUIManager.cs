@@ -30,13 +30,15 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     private CheckPoint checkPoint;
     private float TrackTime = 0f;
     private RoomInformation _roomInformation;
-
+    private Ranking ranking;
     private bool Ready = false;
 
     #endregion
 
     void Start()
     {
+        //랭킹넣어주기
+        //ranking = GetComponent<Ranking>();
         _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         pv = GetComponent<PhotonView>();
         //_playerManager.initPlayerInfo();
@@ -67,6 +69,8 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     {
         if(GameUI.activeSelf)
         CountDown();
+        //내 랭킹은 내가 관리함
+        //RankText.text = ranking.MyRank.ToString();
     }
     #region Event
     #endregion

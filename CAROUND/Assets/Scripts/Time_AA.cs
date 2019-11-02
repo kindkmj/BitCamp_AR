@@ -3,8 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
 
-public class Time_AA : MonoBehaviour
+public class Time_AA : MonoBehaviourPunCallbacks
 {
     //15초의 대기시간을 주는 이유는 초기화셋팅시 필요한 시간이라고 추측함
     #region Variable
@@ -13,9 +14,11 @@ public class Time_AA : MonoBehaviour
     public bool CountFlag = false;
     private GameObject PlayerCars;
     public MapSetting map;
+    private PhotonView pv;
     #endregion
     void Start()
     {
+        //pv = GetComponent<PhotonView>();
         PlayerCars = GameObject.FindGameObjectWithTag("PlayerManager");
         CountDown();
     }

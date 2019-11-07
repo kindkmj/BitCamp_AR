@@ -10,7 +10,7 @@ using PlayFab.ClientModels;
 using PlayFab.DataModels;
 using UnityEngine.UI;
 using EntityKey = PlayFab.ClientModels.EntityKey;
-//Version 1.01
+//Version 1.02 kmj
 public class PlayFabManager : InitRoomScene
 {
     private PanelOnOff panelonoff;

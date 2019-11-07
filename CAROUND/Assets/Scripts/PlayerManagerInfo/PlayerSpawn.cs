@@ -7,10 +7,11 @@ using UnityEngine;
 public class PlayerSpawn : MonoBehaviourPunCallbacks
 {
     private GameObject Player;
-    public Transform _PlayerSpawn;
+
+    //public Transform _PlayerSpawn;
     private PhotonView pv;
     public List<GameObject> PlayerSpawnList = new List<GameObject>();
-
+    public Ranking _Ranking;
 
     //public PlayerManager _playerManager;
     private RoomInformation roominformation;
@@ -24,7 +25,7 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
         pv = GetComponent<PhotonView>();
         roominformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         //Player = Resources.Load("Classic_16") as GameObject;
-        _PlayerSpawn = GetComponent<Transform>();
+        //_PlayerSpawn = GetComponent<Transform>();
         UserInfo = roominformation.userInfoList;
         MyName = roominformation.MyName;
         ViewCar();
@@ -35,16 +36,17 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
         for (int i = 0; i < roominformation.UserAndCarName.Count; i++)
         {
             var test = roominformation.UserAndCarName.Keys.ToList();
-            if (MyName == test[i])
+            if (test[i] != MyName)
             {
-//                GameObject _UserCar =
-//                    Resources.Load("Cars/" + roominformation.UserAndCarName[test[i]]
-//                                       .Replace(" ", "")) as GameObject;
-                GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + roominformation.UserAndCarName[test[i]]
-                                                                     .Replace(" ", ""), PlayerSpawnList[i].transform.position,
-                    Quaternion.identity);
-                playerCar.name = test[i];
+                continue;
             }
+
+            GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + roominformation.UserAndCarName[test[i]]
+                                                                 .Replace(" ", ""),
+                PlayerSpawnList[i].transform.position,
+                Quaternion.identity);
+            playerCar.name = test[i];
         }
     }
 }
+

@@ -30,47 +30,52 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     private CheckPoint checkPoint;
     private float TrackTime = 0f;
     private RoomInformation _roomInformation;
-    private Ranking ranking;
+    public Ranking _Ranking;
     private bool Ready = false;
 
     #endregion
 
     void Start()
     {
-        //랭킹넣어주기
-        //ranking = GetComponent<Ranking>();
-        _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
-        pv = GetComponent<PhotonView>();
-        //_playerManager.initPlayerInfo();
-        GameCondition = GameObject.FindGameObjectWithTag("ConditionManager").GetComponent<GameCondition>();
-        timea = GameObject.FindWithTag("Timer").GetComponent<Time_AA>();
-        Texts = GameObject.FindWithTag("Canvas").GetComponentsInChildren<Text>();
-        for (int i = 0; i < Texts.Length; i++)
+        if (pv.IsMine)
         {
-            if (Texts[i].name == "CountDownText")
+            //랭킹넣어주기
+            //ranking = GetComponent<Ranking>();
+            _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
+            //_playerManager.initPlayerInfo();
+            GameCondition = GameObject.FindGameObjectWithTag("ConditionManager").GetComponent<GameCondition>();
+            timea = GameObject.FindWithTag("Timer").GetComponent<Time_AA>();
+            Texts = GameObject.FindWithTag("Canvas").GetComponentsInChildren<Text>();
+            for (int i = 0; i < Texts.Length; i++)
             {
-                CountDownText = Texts[i];
+                if (Texts[i].name == "CountDownText")
+                {
+                    CountDownText = Texts[i];
+                }
+                else if (Texts[i].name == "RankText")
+                {
+                    RankText = Texts[i];
+                }
+                else if (Texts[i].name == "TrackText")
+                {
+                    TrackText = Texts[i];
+                }
             }
-            else if (Texts[i].name == "RankText")
-            {
-                RankText = Texts[i];
-            }
-            else if (Texts[i].name == "TrackText")
-            {
-                TrackText = Texts[i];
-            }
+            GameUI.SetActive(false);
+            RewardUI.SetActive(false);
         }
-        GameUI.SetActive(false);
-        RewardUI.SetActive(false);
-        
     }
     // Update is called once per frame
     void Update()
     {
-        if(GameUI.activeSelf)
-        CountDown();
-        //내 랭킹은 내가 관리함
-        //RankText.text = ranking.MyRank.ToString();
+        if (pv.IsMine)
+        {
+            if (GameUI.activeSelf)
+                CountDown();
+            RankText.text = _Ranking.MyRank.ToString();
+            //내 랭킹은 내가 관리함
+            //RankText.text = ranking.MyRank.ToString();
+        }
     }
     #region Event
     #endregion
@@ -158,12 +163,12 @@ public class InGamePlayUIManager : MonoBehaviourPunCallbacks
     /// </summary>
     private void ViewRank()
     {
-        var PlayerRank = RankingObject.RankingSetUp();
-        for (int i = 0; i < PlayerRank.Count; i++)
-        {
-            RewardTexts[i].text = PlayerRank[i];
-            //순위에 걸맞게 보상을 지급해야하며 보상내용을 고정적으로 RewardTextsp[4]~[7] 까지의 금액을 지급할 수 있도로 설정
-        }
+        //var PlayerRank = RankingObject.RankingSetUp();
+//        for (int i = 0; i < PlayerRank.Count; i++)
+//        {
+//            RewardTexts[i].text = PlayerRank[i];
+//            //순위에 걸맞게 보상을 지급해야하며 보상내용을 고정적으로 RewardTextsp[4]~[7] 까지의 금액을 지급할 수 있도로 설정
+//        }
     }
 
     //public void 

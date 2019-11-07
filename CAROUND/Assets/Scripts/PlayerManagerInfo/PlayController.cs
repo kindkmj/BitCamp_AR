@@ -33,12 +33,6 @@ public class PlayController : MonoBehaviour
     {
         if (Ready == true)
         {
-            Debug.Log(MyCar.name);
-        }
-
-        if (Ready == true)
-        {
-            Debug.Log(MyCar.name);
             MoveCar();
         }
     }
@@ -130,7 +124,6 @@ public class PlayController : MonoBehaviour
         PlayerWheels[0].steerAngle = m_steeringAngle;
         PlayerWheels[1].steerAngle = m_steeringAngle;
         UpdateWheelPoses();
-        Debug.Log(m_horizontalInput.ToString());
     }
 
     private void UpdateWheelPoses()

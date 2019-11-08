@@ -101,7 +101,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if(Active==true)
         ServerState.text = PhotonNetwork.NetworkClientState.ToString();
     }
     #region 서버 접속
@@ -232,29 +231,34 @@ public class RoomInformation : InitRoomScene,IPunObservable
                             PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
 
-        for (int i = 0; i < MaxPlayer; i++)
+        //if (PhotonNetwork.IsMasterClient)
         {
-            if (player.NickName == PlayerNameArray[i].text)
+            for (int i = 0; i < MaxPlayer; i++)
             {
-                int index = 0;
-                PlayerNameArray[i].text = string.Empty;
-                for (int j = 0; j < userInfoList.Count; j++)
+                if (player.NickName == PlayerNameArray[i].text)
                 {
-                    if (userInfoList[j].GetUserName() == player.NickName)
-                        index = j;
+                    int index = 0;
+                    PlayerNameArray[i].text = string.Empty;
+                    for (int j = 0; j < userInfoList.Count; j++)
+                    {
+                        if (userInfoList[j].GetUserName() == player.NickName)
+                            index = j;
 
+                    }
+
+                    userInfoList.RemoveAt(index);
+                    return;
                 }
-                userInfoList.RemoveAt(index);
-                return;
-            }
-            else if (PlayerNameArray[i].text == string.Empty)
-            {
-                PlayerNameArray[i].text = player.NickName;
-                userInfoList.Add(new UserInfo(player.NickName, 0, false,"DerbyCars"));
-                return;
+
+                else if (PlayerNameArray[i].text == string.Empty)
+                {
+                    PlayerNameArray[i].text = player.NickName;
+                    userInfoList.Add(new UserInfo(player.NickName, 0, false, "DerbyCars"));
+                    return;
+                }
             }
         }
-        
+
         if (!PhotonNetwork.IsMasterClient)
         {
             GameStartButton.interactable = false;
@@ -323,7 +327,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         panelonoff.PanelOn("Lobby");
 
-
         PhotonNetwork.LeaveRoom();
         //RoomRenewal();
         tetst();
@@ -331,7 +334,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     public void GameStart()
     {
-        
         photonView.RPC("gamescence",RpcTarget.All);
     }
 
@@ -347,7 +349,8 @@ public class RoomInformation : InitRoomScene,IPunObservable
         {
             UserText.text = userInfoList.Count.ToString();
 
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //userInfoArray = new UserInfo[userInfoList.Count - 1];
+            userInfoArray = new UserInfo[userInfoList.Count];
 
             for (int i = 0; i < userInfoArray.Length; i++)
             {
@@ -355,9 +358,12 @@ public class RoomInformation : InitRoomScene,IPunObservable
             }
             stream.SendNext(userInfoArray);
         }
+
         else
         {
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //userInfoArray = new UserInfo[userInfoList.Count - 1
+            //];
+            userInfoArray = new UserInfo[userInfoList.Count];
             userInfoArray = (UserInfo[])stream.ReceiveNext();
 
             for (int i = 0; i < userInfoArray.Length; i++)
@@ -367,30 +373,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
         }
     }
 
-    /*
-    [PunRPC]
-    public void SaveData(List<UserInfo> userlist)
-    {
-        if (PhotonNetwork.IsMasterClient)
-        {
-            for (int i = 0; i < userlist.Count; i++)
-            {
-                userInfoList.Add(userlist[i]);
-            }
-            photonView.RPC("SaveData", RpcTarget.Others, userInfoList);
-        }
-
-        //photonView.RPC("SaveData", RpcTarget.Others, userlist);
-    }
-    */
-
-    /*
-    [PunRPC]
-    public void DeleteData(List<UserInfo> userlist)
-    {
-
-    }
-    */
     public void SendList()
     {
     }

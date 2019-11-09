@@ -206,7 +206,6 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.NickName = playfabmanager.UserNickname;
-        Debug.Log(playfabmanager.UserNickname);
     }
 
     public override void OnConnectedToMaster()

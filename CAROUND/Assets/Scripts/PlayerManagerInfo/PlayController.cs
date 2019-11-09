@@ -11,8 +11,8 @@ public class PlayController : MonoBehaviour
     #region variable
 
     private PhotonView pv;
-    private readonly List<string> WheelList = new List<string>();
-    private readonly List<string> TireList = new List<string>();
+    private List<string> WheelList = new List<string>();
+    private List<string> TireList = new List<string>();
     public float speed;
     private Joystick VariableJoystick;
     private WheelCollider[] PlayerWheels = new WheelCollider[4];
@@ -25,8 +25,10 @@ public class PlayController : MonoBehaviour
     private GameObject MyCar;
     private Rigidbody rigidbody;
     public bool Ready = false;
+    public RoomInformation _RoomInformation;
     #endregion
     #region Event
+
     public void FixedUpdate()
     {
         if (Ready == true)
@@ -37,34 +39,30 @@ public class PlayController : MonoBehaviour
 
     void Start()
     {
-        InitSetUp();
-        pv = gameObject.AddComponent<PhotonView>();
+            InitSetUp();
     }
 
     private void InitSetUp()
     {
-        if (Ready == true)
-        {
-            // if(pv.IsMine)
+            if (Ready == true)
             {
-
-                VariableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<Joystick>();
-                WheelCollider[] DefalutWheelColliders = null;
-                Transform[] DefalutTranforms = null;
-
-                MyCar = GameObject.FindWithTag("PlayerCar");
-                InitWheelAndTireName();
-                InitComponents("W", WheelList, MyCar, ref PlayerWheels, ref DefalutTranforms);
-                InitComponents("T", TireList, MyCar, ref DefalutWheelColliders, ref PlayerTransform);
-                rigidbody = MyCar.GetComponent<Rigidbody>();
-                rigidbody.centerOfMass = new Vector3(0.0f, 0.15f, -0.1f);
-//            return;
+                {
+                    _RoomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
+                    VariableJoystick = GameObject.FindWithTag("JoyStick").GetComponent<Joystick>();
+                    WheelCollider[] DefalutWheelColliders = null;
+                    Transform[] DefalutTranforms = null;
+                    MyCar = GameObject.Find(_RoomInformation.MyName);
+                    InitWheelAndTireName();
+                    InitComponents("W", WheelList, MyCar, ref PlayerWheels, ref DefalutTranforms);
+                    InitComponents("T", TireList, MyCar, ref DefalutWheelColliders, ref PlayerTransform);
+                    rigidbody = MyCar.GetComponent<Rigidbody>();
+                    rigidbody.centerOfMass = new Vector3(0.0f, 0.15f, -0.1f);
+                }
             }
-        }
-        else
-        {
-            Invoke("InitSetUp", 1f);
-        }
+            else
+            {
+                Invoke("InitSetUp", 1f);
+            }
     }
 
     #endregion

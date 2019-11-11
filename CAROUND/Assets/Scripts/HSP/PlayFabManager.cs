@@ -8,9 +8,11 @@ using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.DataModels;
+using UnityEngine.Assertions.Must;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 using EntityKey = PlayFab.ClientModels.EntityKey;
-//Version 1.02 kmj
+//Version 1.0
 public class PlayFabManager : InitRoomScene
 {
     private PanelOnOff panelonoff;
@@ -112,7 +114,14 @@ public class PlayFabManager : InitRoomScene
             RegisterPasswordReInputState.text = "비밀번호 불일치";
         }
 
-        RegisterCheck();
+        try
+        {
+             RegisterCheck();
+        }
+        catch (Exception e)
+        {
+            throw;
+        }
 
         if (PasswordCheck == true)
         {
@@ -121,27 +130,61 @@ public class PlayFabManager : InitRoomScene
             PasswordCheck = false;
         }
     }
+    
 
     void RegisterCheck()
     {
         if (!RegisterEmailInput.text.Contains("@"))
         {
-            EmailCheckText.text = "이메일 형식이 맞지 않습니다.";
+            EmailCheckText.color = Color.red;
+            EmailCheckText.text = "이메일 형식이 맞지 않음";
+        }
+
+        else
+        {
+            EmailCheckText.color = Color.black;
+            EmailCheckText.text = "";
         }
 
         if (RegisterPasswordInput.text.Length < 6 || RegisterPasswordInput.text.Length > 10)
         {
-            PasswordCheckText.text = "비밀번호는 6~10자리만 가능합니다.";
+            PasswordCheckText.color = Color.red;
+            PasswordCheckText.text = "비밀번호는 6~10자리만 가능";
+        }
+        else
+        {
+            PasswordCheckText.color = Color.black;
+            PasswordCheckText.text = "";
         }
 
         if (RegisterUsernameInput.text.Length < 3 || RegisterUsernameInput.text.Length > 10)
         {
-            IdCheckText.text = "아이디는 3~10자리만 가능합니다.";
+            IdCheckText.color = Color.red;
+            IdCheckText.text = "아이디는 3~10자리 영어숫자만 가능";
+            
+        }
+        
+        else
+        {
+            IdCheckText.color = Color.black;
+            IdCheckText.text = "ss";
+        }
+        foreach (char ch in RegisterUsernameInput.text)
+        {
+            IdCheckText.color = Color.red;
+            if (!(0x61 <= ch && ch <= 0x7A) && !(0x41 <= ch && ch <= 0x5A) && !(0x30 <= ch && ch <= 0x39))
+                IdCheckText.text = "아이디는 3~10자리 영어숫자만 가능";
         }
 
         if (RegisterNicknameInput.text.Length < 3 || RegisterNicknameInput.text.Length > 5)
         {
-            NickNameCheckText.text = "닉네임은 3~5자리만 가능합니다.";
+            NickNameCheckText.color = Color.red;
+            NickNameCheckText.text = "닉네임은 3~5자리만 가능";
+        }
+        else
+        {
+            NickNameCheckText.color = Color.black;
+            NickNameCheckText.text = "";
         }
 
     }
@@ -296,19 +339,33 @@ public class PlayFabManager : InitRoomScene
     {
         panelonoff.PanelOn("FindPassword");
         //ResetPassword.SetActive(false);
-
+    }
+    public void LobbyPanelOn()
+    {
+        panelonoff.PanelOn("Lobby");
     }
 
-    void wer()
+    public void InputTextInit()
     {
-        var request = new GetUserDataRequest { };
+        RegisterUsernameInput.text = "";
+        RegisterPasswordInput.text = "";
+        RegisterPasswordReInput.text = "";
+        RegisterNicknameInput.text = "";
+        RegisterEmailInput.text = "";
 
-        var te = new AddGenericIDRequest();
+    }
+    public void PasswordInputTextInit()
+    {
+    }
+    public void PasswordReInputTextInit()
+    {
+    }
+    public void NickNameInputTextInit()
+    {
+    }
 
-       
-
-        var ww = new GetPlayerProfileRequest();
-
-
+    public void EmailInputTextInit()
+    {
+        FindPasswordEmailInput.text="";
     }
 }

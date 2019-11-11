@@ -2,22 +2,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Photon.Pun;
 using UnityEngine;
 
-public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
+public class Ranking : MonoBehaviour
 {
 
+<<<<<<< HEAD
     #region Variable
 
     public PhotonView pv;
 
     //private RankingManager _rankingManager;
+=======
+#region Variable
+
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
     public PlayerInfo PlayerInfo;
 
     //public PlayerManager _playerManager;
     private Dictionary<string, float> RankInfo = new Dictionary<string, float>();
     private RoomInformation _roomInformation;
+<<<<<<< HEAD
     private float Distance = 0f;
     private GameObject ReferencePoint;
     public int MyRank = 1;
@@ -35,6 +40,8 @@ public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
     private string MyData = "";
     string[] RankData = new string[4];
 
+=======
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
     #endregion
 
 
@@ -43,6 +50,7 @@ public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
+<<<<<<< HEAD
         //유저데이터 초기화 작업.
         InitData();
         pv = GetComponent<PhotonView>();
@@ -64,10 +72,15 @@ public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
 
     }
 
+=======
+        _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
+    }
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
     #endregion
 
     #region Function
 
+<<<<<<< HEAD
     private void InitData()
     {
         for (int i = 0; i < RankData.Length; i++)
@@ -92,10 +105,20 @@ public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
 
     //자신의 거리를 체크하기
     private float GetDistance()
+=======
+    /// <summary>
+    /// 유저의 거리를 지속적으로 업데이트 해줌??
+    /// </summary>
+    private void SetUserDistance()
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
     {
-        return (Distance += Vector3.Distance(this.gameObject.transform.position, ReferencePoint.transform.position));
+        float UserDistance = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetCheckDistance();
+        float UserRank = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetRank();
+        //_playerManager.UserList[PlayerInfo.playerIndex].SetCheckDistance(PlayerInfo.MyPosition);
+        RankInfo.Add(_roomInformation.userInfoList[PlayerInfo.playerIndex].GetUserName().ToString(), UserDistance + UserRank);
     }
 
+<<<<<<< HEAD
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         //마스터 유저는
@@ -155,89 +178,67 @@ public class Ranking : MonoBehaviourPunCallbacks, IPunObservable
 
 
     private void UserRankProcess(ref string[] Userdatas, string[] Arrdatas)
+=======
+    /// <summary>
+    /// 유저의 랭킹을 정리해주는 함수
+    /// </summary>
+    /// <returns>리턴값으로 주는 List에는 유저의 순위가 저장되어 있음</returns>
+    public List<string> RankingSetUp()
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
     {
-        float[] RankValue = new float[4];
-        for (int i = 0; i < Arrdatas.Length; i++)
+        int[] rank = new int[_roomInformation.userInfoList.Count];
+        List<string> RankKey = RankInfo.Keys.ToList();
+        //랭킹 초기화
+        for (int i = 0; i < rank.Length; i++)
         {
-            if (Arrdatas[i] == string.Empty)
-                break;
-            RankValue[i] = float.Parse(Arrdatas[i].Remove(0, Arrdatas[i].IndexOf('_') + 1));
+            rank[i] = 1;
         }
+<<<<<<< HEAD
 
         for (int i = 0; i < RankValue.Length; i++)
+=======
+        //실질적인 랭킹 가리는 부분
+        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
         {
-            if (Arrdatas[i] == string.Empty)
-                break;
-            int index = 1;
-            for (int j = 0; j < RankValue.Length; j++)
+            List<float> RankValue = RankInfo.Values.ToList();
+            for (int j = 0; j < RankValue.Count; j++)
             {
                 if (RankValue[i] < RankValue[j])
                 {
-                    index++;
+                    rank[i]++;
                 }
             }
+<<<<<<< HEAD
 
             Userdatas[i] = Arrdatas[i].Remove(Arrdatas[i].IndexOf('_')) + "_" + index;
+=======
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4
         }
+
+        //랭킹 인덱스 초기화 및 설정
+        int[] index = new int[rank.Length];
+        for (int i = 0; i < rank.Length; i++)
+        {
+            index[rank[i] - 1] = i;
+        }
+
+        List<string> Ranking = new List<string>();
+        //랭킹 표출
+        for (int i = 0; i < rank.Length; i++)
+        {
+            int t = index[i];
+            Ranking.Add(RankKey[t]);
+            //랭킹 보여주면 될듯.
+            //RankKey[t];
+        }
+
+        return Ranking;
     }
-    /// <summary>
-    /// 유저의 거리를 지속적으로 업데이트 해줌??
-    /// </summary>
-    //    private void SetUserDistance()
-    //    {
-    //        float UserDistance = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetCheckDistance();
-    //        float UserRank = _roomInformation.userInfoList[PlayerInfo.playerIndex].GetRank();
-    //        //_playerManager.UserList[PlayerInfo.playerIndex].SetCheckDistance(PlayerInfo.MyPosition);
-    //        RankInfo.Add(_roomInformation.userInfoList[PlayerInfo.playerIndex].GetUserName().ToString(), UserDistance + UserRank);
-    //    }
-    //
-    //    /// <summary>
-    //    /// 유저의 랭킹을 정리해주는 함수
-    //    /// </summary>
-    //    /// <returns>리턴값으로 주는 List에는 유저의 순위가 저장되어 있음</returns>
-    //    public List<string> RankingSetUp()
-    //    {
-    //        int[] rank = new int[_roomInformation.userInfoList.Count];
-    //        List<string> RankKey = RankInfo.Keys.ToList();
-    //        //랭킹 초기화
-    //        for (int i = 0; i < rank.Length; i++)
-    //        {
-    //            rank[i] = 1;
-    //        }
-    //        //실질적인 랭킹 가리는 부분
-    //        for (int i = 0; i < _roomInformation.userInfoList.Count; i++)
-    //        {
-    //            List<float> RankValue = RankInfo.Values.ToList();
-    //            for (int j = 0; j < RankValue.Count; j++)
-    //            {
-    //                if (RankValue[i] < RankValue[j])
-    //                {
-    //                    rank[i]++;
-    //                }
-    //            }
-    //        }
-    //
-    //        //랭킹 인덱스 초기화 및 설정
-    //        int[] index = new int[rank.Length];
-    //        for (int i = 0; i < rank.Length; i++)
-    //        {
-    //            index[rank[i] - 1] = i;
-    //        }
-    //
-    //        List<string> Ranking = new List<string>();
-    //        //랭킹 표출
-    //        for (int i = 0; i < rank.Length; i++)
-    //        {
-    //            int t = index[i];
-    //            Ranking.Add(RankKey[t]);
-    //            //랭킹 보여주면 될듯.
-    //            //RankKey[t];
-    //        }
-    //
-    //        return Ranking;
-    //    }
 
-    #endregion
-
-
+<<<<<<< HEAD
 }
+=======
+    #endregion
+}
+>>>>>>> 400611a19f39ce647e3666e34e377c1cd329d8d4

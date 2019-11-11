@@ -36,6 +36,5 @@ MonoBehaviour:
   - RespawnSpaceship
   - gamescence
   - SaveData
-  - saverank
   DisableAutoOpenWizard: 1
   ShowSettings: 0

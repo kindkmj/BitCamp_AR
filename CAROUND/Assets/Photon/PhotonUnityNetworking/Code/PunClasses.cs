@@ -764,6 +764,7 @@ namespace Photon.Pun
                 }
             }
         }
+        
 
         /// <summary>
         /// Will read or write the value, depending on the stream's IsWriting value.

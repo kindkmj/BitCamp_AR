@@ -11,19 +11,20 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Debug = UnityEngine.Debug;
 
-public class RoomInformation : InitRoomScene,IPunObservable
+public class RoomInformation : InitRoomScene, IPunObservable
 {
-    
+
     private PlayFabManager playfabmanager;
     private PanelOnOff panelonoff;
 
-   
+
     [Header("Login")]
     //private GameObject Login;
 
     [Header("Lobby")]
     //private GameObject Lobby;
     private GameObject[] RoomButtons_test;
+
     private Button[] LobbyButtons;
 
     [Header("RoomCreate")]
@@ -31,7 +32,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     private Button RoomCreateComplete;
 
     [Header("Room")]
-   // private GameObject Room;
+    // private GameObject Room;
     private Button[] RoomButtons;
 
     private Text ListText;
@@ -39,6 +40,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     [Header("RoomInside")]
     //private GameObject RoomInside;
     private Text[] PlayerNameArray = new Text[4];
+
     private Button GameStartButton;
 
     [Header("ETC")] private Text ServerState;
@@ -53,48 +55,49 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     private bool[] bReadyCheck = new bool[4];
 
-    private int MaxPlayer= 4;
+    private int MaxPlayer = 4;
     private bool Active = false;
     public bool MoveScene = false;
     public List<UserInfo> userInfoList = new List<UserInfo>();
-    public UserInfo[] userInfoArray;
+    public string[] userInfoArray;
     private bool bRoomManager = false;
     public string MyName;
-    bool a = false;
+    private string PlayerCar = "";
+    public Image[] PlayerSelectCarImg;
 
     void Awake()
     {
         DontDestroyOnLoad(this);
-        Screen.SetResolution(960,540,false);
+        Screen.SetResolution(960, 540, false);
     }
 
     void Start()
     {
         playfabmanager = GameObject.Find("PlayFabManager").GetComponent<PlayFabManager>();
-            panelonoff = GameObject.Find("PanelOnOff").GetComponent<PanelOnOff>();
+        panelonoff = GameObject.Find("PanelOnOff").GetComponent<PanelOnOff>();
 
-            //Login = GameObject.FindWithTag("Login");
-            //Lobby = GameObject.FindWithTag("Lobby");
-            //RoomCreate = GameObject.FindWithTag("RoomCreate");
-            //Room = GameObject.FindWithTag("Room");
-            //RoomInside = GameObject.FindWithTag("RoomInside");
+        //Login = GameObject.FindWithTag("Login");
+        //Lobby = GameObject.FindWithTag("Lobby");
+        //RoomCreate = GameObject.FindWithTag("RoomCreate");
+        //Room = GameObject.FindWithTag("Room");
+        //RoomInside = GameObject.FindWithTag("RoomInside");
 
-            LobbyButtons = GameObject.Find("Lobby").GetComponentsInChildren<Button>();
-            RoomButtons = GameObject.Find("RoomList").GetComponentsInChildren<Button>();
-            GameStartButton = GameObject.FindWithTag("GameStartButton").GetComponent<Button>();
-            ServerState = GameObject.FindWithTag("ServerState").GetComponent<Text>();
-            ListText = GameObject.FindWithTag("List").GetComponent<Text>();
+        LobbyButtons = GameObject.Find("Lobby").GetComponentsInChildren<Button>();
+        RoomButtons = GameObject.Find("RoomList").GetComponentsInChildren<Button>();
+        GameStartButton = GameObject.FindWithTag("GameStartButton").GetComponent<Button>();
+        ServerState = GameObject.FindWithTag("ServerState").GetComponent<Text>();
+        ListText = GameObject.FindWithTag("List").GetComponent<Text>();
 
-            PlayerNameArray = GameObject.Find("RoomInside").GetComponentsInChildren<Text>();
+        PlayerNameArray = GameObject.Find("RoomInside").GetComponentsInChildren<Text>();
 
-            for (int i = 0; i < 4; i++)
-                bReadyCheck[i] = false;
+        for (int i = 0; i < 4; i++)
+            bReadyCheck[i] = false;
 
 
-            for (int i = 0; i < 2; i++)
-            {
-                LobbyButtons[i].interactable = false;
-            }
+        for (int i = 0; i < 2; i++)
+        {
+            LobbyButtons[i].interactable = false;
+        }
     }
 
 
@@ -103,6 +106,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         ServerState.text = PhotonNetwork.NetworkClientState.ToString();
     }
+
     #region 서버 접속
 
     public void Connect()
@@ -118,6 +122,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
         {
             LobbyButtons[i].interactable = true;
         }
+
         PhotonNetwork.JoinLobby();
 
     }
@@ -127,6 +132,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
         CurrentRoomList.Clear();
         panelonoff.PanelOn("Lobby");
     }
+
     #endregion
 
 
@@ -147,7 +153,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     public void CreateRoom()
     {
-        PhotonNetwork.CreateRoom(PhotonNetwork.NickName+"님의 방", new RoomOptions { MaxPlayers = (byte)MaxPlayer });
+        PhotonNetwork.CreateRoom(PhotonNetwork.NickName + "님의 방", new RoomOptions {MaxPlayers = (byte) MaxPlayer});
         userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
         PlayerNameArray[0].text = PhotonNetwork.NickName;
         bRoomManager = true;
@@ -170,6 +176,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
 
     }
+
     public void SetRoomName(string text)
     {
         SelectRoomName.Clear();
@@ -181,10 +188,11 @@ public class RoomInformation : InitRoomScene,IPunObservable
         panelonoff.PanelOn("Room");
 
     }
+
     public void JoinRoom()
     {
-        if(SelectRoomName.ToString().Trim()!=string.Empty)
-        PhotonNetwork.JoinRoom(SelectRoomName.ToString().Trim(), null);
+        if (SelectRoomName.ToString().Trim() != string.Empty)
+            PhotonNetwork.JoinRoom(SelectRoomName.ToString().Trim(), null);
     }
 
     public override void OnJoinedRoom()
@@ -199,14 +207,14 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         CreateRoom();
     }
-    
+
     #endregion
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
     {
         RoomRenewal(newPlayer);
         //SaveData(userInfoList);
-        
+
     }
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
@@ -237,24 +245,42 @@ public class RoomInformation : InitRoomScene,IPunObservable
             {
                 if (player.NickName == PlayerNameArray[i].text)
                 {
-                    int index = 0;
-                    PlayerNameArray[i].text = string.Empty;
-                    for (int j = 0; j < userInfoList.Count; j++)
+                    for (int j = 0; j < userInfoArray.Length; j++)
                     {
-                        if (userInfoList[j].GetUserName() == player.NickName)
-                            index = j;
-
+                        if (player.NickName == userInfoArray[j])
+                        {
+                            userInfoArray[j] = string.Empty;
+                            return;
+                        }
                     }
 
-                    userInfoList.RemoveAt(index);
-                    return;
+//
+//                    int index = 0;
+//                    PlayerNameArray[i].text = string.Empty;
+//                    for (int j = 0; j < userInfoList.Count; j++)
+//                    {
+//                        if (userInfoList[j].GetUserName() == player.NickName)
+//                            index = j;
+//
+//                    }
+//
+//                    userInfoList.RemoveAt(index);
+//                    return;
                 }
 
-                else if (PlayerNameArray[i].text == string.Empty)
+                else if (PlayerNameArray[i].text == string.Empty && PlayerNameArray[i].text == null)
                 {
                     PlayerNameArray[i].text = player.NickName;
-                    userInfoList.Add(new UserInfo(player.NickName, 0, false, "DerbyCars"));
-                    return;
+                    for (int j = 0; j < PlayerNameArray.Length; j++)
+                    {
+                        if (userInfoArray[j] == string.Empty && userInfoArray[j] == null)
+                        {
+                            userInfoArray[j] = player.NickName;
+                            return;
+                        }
+                    }
+
+//                    userInfoList.Add(new UserInfo(player.NickName, 0, false, "DerbyCars"));
                 }
             }
         }
@@ -274,9 +300,10 @@ public class RoomInformation : InitRoomScene,IPunObservable
             {
                 if (CurrentRoomList[i] == null)
                     return;
-                RoomButtons[i].interactable = ((i < CurrentRoomList.Count) || ((int)CurrentRoomList[i].PlayerCount != 4))
-                    ? true
-                    : false;
+                RoomButtons[i].interactable =
+                    ((i < CurrentRoomList.Count) || ((int) CurrentRoomList[i].PlayerCount != 4))
+                        ? true
+                        : false;
 
 
                 //RoomButtons[i].enabled = (i < CurrentRoomList.Count) ? true : false;
@@ -314,19 +341,19 @@ public class RoomInformation : InitRoomScene,IPunObservable
             else if (CurrentRoomList.IndexOf(roomList[i]) != -1)
                 CurrentRoomList.RemoveAt(CurrentRoomList.IndexOf(roomList[i]));
         }
+
         MyListRenewal();
         //PhotonNetwork.
     }
 
     public void ReadyCheck()
     {
-        
+
     }
 
     public void GoBackToLobby()
     {
         panelonoff.PanelOn("Lobby");
-
         PhotonNetwork.LeaveRoom();
         //RoomRenewal();
         tetst();
@@ -334,7 +361,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
     public void GameStart()
     {
-        photonView.RPC("gamescence",RpcTarget.All);
+        photonView.RPC("gamescence", RpcTarget.All);
     }
 
     [PunRPC]
@@ -342,38 +369,109 @@ public class RoomInformation : InitRoomScene,IPunObservable
     {
         PhotonNetwork.LoadLevel("GameScene");
     }
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting && PhotonNetwork.IsMasterClient)
+        if (stream.IsWriting)
         {
-            UserText.text = userInfoList.Count.ToString();
-
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
-            //userInfoArray = new UserInfo[userInfoList.Count];
-
-            for (int i = 0; i < userInfoArray.Length; i++)
-            {
-                userInfoArray[i] = userInfoList[i];
-            }
+//            userInfoArray = new UserInfo[userInfoList.Count - 1];
+//            //userInfoArray = new UserInfo[userInfoList.Count];
+//
+//            for (int i = 0; i < userInfoArray.Length; i++)
+//            {
+//                userInfoArray[i] = userInfoList[i];
+//            }
+//            stream.SendNext(userInfoArray);
             stream.SendNext(userInfoArray);
+            stream.SendNext(PlayerNameArray);
         }
-
         else
         {
+            userInfoArray = (string[]) stream.ReceiveNext();
+            PlayerNameArray = (Text[]) stream.ReceiveNext();
+            //            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //            //userInfoArray = new UserInfo[userInfoList.Count];
+            //            userInfoArray = (UserInfo[])stream.ReceiveNext();
+            //
+            //            for (int i = 0; i < userInfoArray.Length; i++)
+            //            {
+            //                userInfoList[i] = userInfoArray[i];
+            //            }
+        }
+    }
+
+
+<<<<<<< HEAD
+            //userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //userInfoArray = new UserInfo[userInfoList.Count];
+=======
+>>>>>>> 5e4c6a3832b6f5fb006e73edff521202a9920fb9
+
+    /// <summary>
+    /// 마스터 클라이언트에 있는 메서드를 실행 유저의 정보를 저장하는데 이용함
+    /// </summary>
+    /// <param name="PlayerName">유저이름_유저의차량 으로 매개변수가 들어오며 배열에 저장이됨</param>
+    [PunRPC]
+    public void SetPlayerInfo(string PlayerName)
+    {
+        string ab = "";
+        for (int i = 0; i < PlayerName.Length; i++)
+        {
+            if (PlayerName[i].ToString() == "_")
+            {
+
+            }
+
+            ab = ab + PlayerName[i];
+        }
+        //PlayerName에서 데이터를 유저아이디_유저차량 으로 받게되며 받은 데이터를 유저아이디,차량 으로 나눈뒤
+        //나눈 데이터중 기존의 유저아이디 와 같은 데이터를 찾은 뒤 해당 데이터를 유저아이디_유저차량으로 새롭게 업데이트
+        //해줌으로써 유저가 선택한 차량으로 바꿈
+        for (int i = 0; i < userInfoArray.Length; i++)
+        {
+<<<<<<< HEAD
             userInfoArray = new UserInfo[userInfoList.Count - 1];
             //userInfoArray = new UserInfo[userInfoList.Count];
             userInfoArray = (UserInfo[])stream.ReceiveNext();
 
             for (int i = 0; i < userInfoArray.Length; i++)
+=======
+            if (userInfoArray[i] == MyName)
+>>>>>>> 5e4c6a3832b6f5fb006e73edff521202a9920fb9
             {
-                userInfoList[i] = userInfoArray[i];
+                userInfoArray[i] = userInfoArray[i] + "_" + "";
             }
         }
     }
-
-    public void SendList()
+    /// <summary>
+    /// 차량이 보여지는 이미지를 누르게 되면 이미지 순서에따라서 type이 나눠지게 되고 눌러진 이미지의 스프라이트 이름을 저장 PlayerCar에 저장하여 사용함
+    /// </summary>
+    /// <param name="type">버튼이 눌러질때 누른 버튼이 어떤 타입인지 분간하기 위함</param>
+    public void SetPlayerCar(int type)
     {
+        if (type == 0)
+        {
+            PlayerCar = MyName +"_"+ PlayerSelectCarImg[type].sprite.name;
+        }
+        else if (type == 1)
+        {
+            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+        }
+        else if (type == 2)
+        {
+            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+        }
+        else if (type == 3)
+        {
+            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+        }
+    }
+
+    /// <summary>
+    /// 유저가 준비버튼을 눌렀을때 실행됨
+    /// </summary>
+    public void PlayerReady()
+    {
+        PV.RPC("SetPlayerInfo",RpcTarget.MasterClient, PlayerCar);
     }
 }
  

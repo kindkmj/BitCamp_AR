@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
@@ -26,34 +27,19 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
     }
     public void ViewCar()
     {
-        for (int i = 0; i < UserInfo.Count; i++)
+        for (int i = 0; i < roominformation.UserAndCarName.Count; i++)
         {
-            if (UserInfo[i].GetUserName() == MyName)
+            var test = roominformation.UserAndCarName.Keys.ToList();
+            if (test[i] != MyName)
             {
-                string CarColor = "";
-                int a = Random.Range(0, 3);
-                if (a == 0)
-                {
-                    CarColor = "Black";
-                }
-                else if (a == 1)
-                {
-                    CarColor = "Blue";
-                }
-                else if (a == 2)
-                {
-                    CarColor = "Green";
-                }
-                else if (a == 3)
-                {
-                    CarColor = "LightBlue";
-                }
-
-                string test = "Cars/" + UserInfo[i].GetCarName() + "_" + CarColor;
-                GameObject UserCar = Resources.Load("Cars/" + UserInfo[i].GetCarName() + "/" + CarColor) as GameObject;
-                Debug.Log(UserCar.name);
-                PhotonView.Instantiate(UserCar, PlayerSpawnList[i].transform.position, Quaternion.identity);
+                continue;
             }
+
+            GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + roominformation.UserAndCarName[test[i]]
+                                                                 .Replace(" ", ""),
+                PlayerSpawnList[i].transform.position,
+                Quaternion.identity);
+            playerCar.name = test[i];
         }
     }
 }

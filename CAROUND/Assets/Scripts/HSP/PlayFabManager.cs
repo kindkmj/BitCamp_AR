@@ -79,6 +79,7 @@ public class PlayFabManager : InitRoomScene
 
         PlayFabClientAPI.GetAccountInfo(request, GetAccountSuccess,(error) => print("실패"));
 
+
     }
 
     private void GetAccountSuccess(GetAccountInfoResult result)
@@ -367,5 +368,11 @@ public class PlayFabManager : InitRoomScene
     public void EmailInputTextInit()
     {
         FindPasswordEmailInput.text="";
+    }
+
+    public void AutoLogin()
+    {
+        LoginUsernameInput.text = "123456";
+        LoginPasswordInput.text = "123456";
     }
 }

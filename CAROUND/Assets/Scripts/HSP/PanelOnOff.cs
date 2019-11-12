@@ -30,7 +30,7 @@ public class PanelOnOff : InitRoomScene
         //FindPassWord = GameObject.FindWithTag("FindPassWord");
 
         //Panels[0] = Login;
-        if (room.MoveScene == false)
+        //if (room.MoveScene == false)
         {
             Panels = GameObject.FindGameObjectsWithTag("Panel");
             PanelOn("AppStart");
@@ -44,6 +44,7 @@ public class PanelOnOff : InitRoomScene
             if (Panels[i].name == PanelName)
             {
                 Panels[i].SetActive(true);
+
             }
             else
             {

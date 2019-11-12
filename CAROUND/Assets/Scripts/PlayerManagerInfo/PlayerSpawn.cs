@@ -27,19 +27,63 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
     }
     public void ViewCar()
     {
-        for (int i = 0; i < roominformation.UserAndCarName.Count; i++)
-        {
-            var test = roominformation.UserAndCarName.Keys.ToList();
-            if (test[i] != MyName)
-            {
-                continue;
-            }
+        //for (int i = 0; i < roominformation.userInfoArray.Length; i++)
+        //{
+        //    PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
 
-            GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + roominformation.UserAndCarName[test[i]]
-                                                                 .Replace(" ", ""),
-                PlayerSpawnList[i].transform.position,
-                Quaternion.identity);
-            playerCar.name = test[i];
+        //    //var test = roominformation.UserAndCarName.Keys.ToList();
+        //    if (test[i] != MyName)
+        //    {
+        //        continue;
+        //    }
+
+        //    GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + roominformation.UserAndCarName[test[i]]
+        //                                                         .Replace(" ", ""),
+        //        PlayerSpawnList[i].transform.position,
+        //        Quaternion.identity);
+        //    playerCar.name = test[i];
+        //}
+        string[] ab = new string[2];
+        string[] caradd = new string[2];
+        for (int i = 0; i < roominformation.userInfoArray.Length; i++)
+        {
+            string user="";
+            if (roominformation.userInfoArray[i].StartsWith(roominformation.MyName))
+            {
+                user = roominformation.userInfoArray[i];
+            }
+            for (int  j = 0;   j<user.Length;  j++)
+            {
+                if (user[j] == '/')
+                {
+                    ab = user.Split(new char[] { '/' });
+                    caradd = ab[1].Split(new char[] {'_'});
+                    /*
+                    if (ab[j] == MyName)
+                    {
+                        continue;
+                    }
+                    */
+                    GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + caradd[0]+"/"+caradd[1],
+                        PlayerSpawnList[0].transform.position, Quaternion.identity);
+                    playerCar.name = ab[0];
+                    return;
+                }
+            }
+            //123/Derby
+            /*
+            if (user[i] == '/')
+            {
+                ab = roominformation.userInfoArray[i].Split(new char[] {'/'});
+                if (ab[i] == MyName)
+                {
+                    continue;
+                }
+                GameObject playerCar = PhotonNetwork.Instantiate("Cars/" + ab[1],
+                        PlayerSpawnList[i].transform.position,Quaternion.identity);
+                playerCar.name = ab[0];
+            }
+            */
         }
     }
 }

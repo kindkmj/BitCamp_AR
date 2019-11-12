@@ -59,11 +59,11 @@ public class RoomInformation : InitRoomScene, IPunObservable
     private bool Active = false;
     public bool MoveScene = false;
     public List<UserInfo> userInfoList = new List<UserInfo>();
-    public string[] userInfoArray;
+    public string[] userInfoArray = new string[4];
     private bool bRoomManager = false;
     public string MyName;
     private string PlayerCar = "";
-    public Image[] PlayerSelectCarImg;
+    public Image[] PlayerSelectCarImg=new Image[4];
 
     void Awake()
     {
@@ -89,6 +89,8 @@ public class RoomInformation : InitRoomScene, IPunObservable
         ListText = GameObject.FindWithTag("List").GetComponent<Text>();
 
         PlayerNameArray = GameObject.Find("RoomInside").GetComponentsInChildren<Text>();
+
+      
 
         for (int i = 0; i < 4; i++)
             bReadyCheck[i] = false;
@@ -129,8 +131,10 @@ public class RoomInformation : InitRoomScene, IPunObservable
 
     public override void OnJoinedLobby()
     {
+        MyName = PhotonNetwork.NickName;
         CurrentRoomList.Clear();
-        panelonoff.PanelOn("Lobby");
+        panelonoff.PanelOn("PartPanel");
+
     }
 
     #endregion
@@ -153,9 +157,11 @@ public class RoomInformation : InitRoomScene, IPunObservable
 
     public void CreateRoom()
     {
+        userInfoArray= new string[4];
         PhotonNetwork.CreateRoom(PhotonNetwork.NickName + "님의 방", new RoomOptions {MaxPlayers = (byte) MaxPlayer});
         userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
         PlayerNameArray[0].text = PhotonNetwork.NickName;
+        userInfoArray[0] = PhotonNetwork.NickName;
         bRoomManager = true;
     }
 
@@ -173,8 +179,6 @@ public class RoomInformation : InitRoomScene, IPunObservable
     public void CreateRoomSetting()
     {
         panelonoff.PanelOn("RoomCreate");
-
-
     }
 
     public void SetRoomName(string text)
@@ -199,7 +203,6 @@ public class RoomInformation : InitRoomScene, IPunObservable
     {
         panelonoff.PanelOn("RoomInside");
         //userInfoList.Add(new UserInfo(PhotonNetwork.NickName, 0, false, "DerbyCars"));
-        MyName = PhotonNetwork.NickName;
         tetst();
     }
 
@@ -253,7 +256,6 @@ public class RoomInformation : InitRoomScene, IPunObservable
                             return;
                         }
                     }
-
 //
 //                    int index = 0;
 //                    PlayerNameArray[i].text = string.Empty;
@@ -410,15 +412,23 @@ public class RoomInformation : InitRoomScene, IPunObservable
     [PunRPC]
     public void SetPlayerInfo(string PlayerName)
     {
-        string ab = "";
+        string[] ab = new string[2];
         for (int i = 0; i < PlayerName.Length; i++)
         {
-            if (PlayerName[i].ToString() == "_")
+            if (PlayerName[i].ToString() == "/")
             {
+                ab = PlayerName.Split(new char[] { '/' }, StringSplitOptions.None);
+                for (int j = 0; j < userInfoArray.Length; j++)
+                {
 
+                    if (userInfoArray[j] == ab[0])
+                    {
+                        userInfoArray[j] = PlayerName;
+                    }
+                }
+            
             }
 
-            ab = ab + PlayerName[i];
         }
         //PlayerName에서 데이터를 유저아이디_유저차량 으로 받게되며 받은 데이터를 유저아이디,차량 으로 나눈뒤
         //나눈 데이터중 기존의 유저아이디 와 같은 데이터를 찾은 뒤 해당 데이터를 유저아이디_유저차량으로 새롭게 업데이트
@@ -444,19 +454,19 @@ public class RoomInformation : InitRoomScene, IPunObservable
     {
         if (type == 0)
         {
-            PlayerCar = MyName +"_"+ PlayerSelectCarImg[type].sprite.name;
+            PlayerCar = MyName +"/"+ PlayerSelectCarImg[type].sprite.name;
         }
         else if (type == 1)
         {
-            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+            PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
         }
         else if (type == 2)
         {
-            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+            PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
         }
         else if (type == 3)
         {
-            PlayerCar = MyName + "_" + PlayerSelectCarImg[type].sprite.name;
+            PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
         }
     }
 
@@ -465,7 +475,7 @@ public class RoomInformation : InitRoomScene, IPunObservable
     /// </summary>
     public void PlayerReady()
     {
-        PV.RPC("SetPlayerInfo",RpcTarget.MasterClient, PlayerCar);
+        photonView.RPC("SetPlayerInfo",RpcTarget.MasterClient, PlayerCar);
     }
 }
  

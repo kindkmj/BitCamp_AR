@@ -10,7 +10,7 @@ using Object = UnityEngine.Object;
 public class SelectModel : MonoBehaviour
 {
     private Image[] thisImage;
-    public GameObject gameObject;
+    public GameObject ViewCarsPart;
     public Object ViewPartObject;
     public string SpriteName;
     private GameObject TouchScreenGameObject;
@@ -109,7 +109,7 @@ public class SelectModel : MonoBehaviour
         tr = new Vector3(-26.33f, -9.89f, 0.89f);
         int i = 0;
 
-        var carlist = gameObject.gameObject.GetComponent<ViewCarsPart>().CarResources.ToList();
+        var carlist = ViewCarsPart.GetComponent<ViewCarsPart>().CarResources.ToList();
 
         for (int j = 0; j < carlist.Count; j++)
         {

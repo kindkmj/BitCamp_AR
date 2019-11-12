@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ViewSelectBtn : MonoBehaviour
 {
     [SerializeField]
-    private Button[] buttons= new Button[5];
+    private Button[] buttons= new Button[6];
     // Start is called before the first frame update
     public void ChangeColor(string text)
     {

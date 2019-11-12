@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class ViewCarsPart : MonoBehaviour
+public class ViewCarsPart : InitRoomScene
 {
     public Image[] CarImages = new Image[4];
     public Text ImgText;
     private Object[] CarsPart;
     public Dictionary<string, Object[]> CarResources = new Dictionary<string, Object[]>();
     private Dictionary<string, Object[]> ImgCarResources = new Dictionary<string, Object[]>();
+    public PhotonView PV;
 
     // Start is called before the first frame update
     void Start()

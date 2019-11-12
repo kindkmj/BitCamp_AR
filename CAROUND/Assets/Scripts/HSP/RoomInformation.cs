@@ -400,11 +400,8 @@ public class RoomInformation : InitRoomScene, IPunObservable
     }
 
 
-<<<<<<< HEAD
             //userInfoArray = new UserInfo[userInfoList.Count - 1];
             //userInfoArray = new UserInfo[userInfoList.Count];
-=======
->>>>>>> 5e4c6a3832b6f5fb006e73edff521202a9920fb9
 
     /// <summary>
     /// 마스터 클라이언트에 있는 메서드를 실행 유저의 정보를 저장하는데 이용함
@@ -426,21 +423,18 @@ public class RoomInformation : InitRoomScene, IPunObservable
         //PlayerName에서 데이터를 유저아이디_유저차량 으로 받게되며 받은 데이터를 유저아이디,차량 으로 나눈뒤
         //나눈 데이터중 기존의 유저아이디 와 같은 데이터를 찾은 뒤 해당 데이터를 유저아이디_유저차량으로 새롭게 업데이트
         //해줌으로써 유저가 선택한 차량으로 바꿈
-        for (int i = 0; i < userInfoArray.Length; i++)
-        {
-<<<<<<< HEAD
-            userInfoArray = new UserInfo[userInfoList.Count - 1];
-            //userInfoArray = new UserInfo[userInfoList.Count];
-            userInfoArray = (UserInfo[])stream.ReceiveNext();
-
-            for (int i = 0; i < userInfoArray.Length; i++)
-=======
-            if (userInfoArray[i] == MyName)
->>>>>>> 5e4c6a3832b6f5fb006e73edff521202a9920fb9
-            {
-                userInfoArray[i] = userInfoArray[i] + "_" + "";
-            }
-        }
+//        for (int i = 0; i < userInfoArray.Length; i++)
+//        {
+//            userInfoArray = new UserInfo[userInfoList.Count - 1];
+//            //userInfoArray = new UserInfo[userInfoList.Count];
+//            userInfoArray = (UserInfo[])stream.ReceiveNext();
+//
+//            for (int i = 0; i < userInfoArray.Length; i++)
+//            if (userInfoArray[i] == MyName)
+//            {
+//                userInfoArray[i] = userInfoArray[i] + "_" + "";
+//            }
+//        }
     }
     /// <summary>
     /// 차량이 보여지는 이미지를 누르게 되면 이미지 순서에따라서 type이 나눠지게 되고 눌러진 이미지의 스프라이트 이름을 저장 PlayerCar에 저장하여 사용함

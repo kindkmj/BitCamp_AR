@@ -231,7 +231,7 @@ public class RoomInformation : InitRoomScene,IPunObservable
                             PhotonNetwork.CurrentRoom.MaxPlayers + "최대";
         }
 
-        //if (PhotonNetwork.IsMasterClient)
+        if (PhotonNetwork.IsMasterClient)
         {
             for (int i = 0; i < MaxPlayer; i++)
             {
@@ -349,8 +349,8 @@ public class RoomInformation : InitRoomScene,IPunObservable
         {
             UserText.text = userInfoList.Count.ToString();
 
-            //userInfoArray = new UserInfo[userInfoList.Count - 1];
-            userInfoArray = new UserInfo[userInfoList.Count];
+            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //userInfoArray = new UserInfo[userInfoList.Count];
 
             for (int i = 0; i < userInfoArray.Length; i++)
             {
@@ -361,9 +361,8 @@ public class RoomInformation : InitRoomScene,IPunObservable
 
         else
         {
-            //userInfoArray = new UserInfo[userInfoList.Count - 1
-            //];
-            userInfoArray = new UserInfo[userInfoList.Count];
+            userInfoArray = new UserInfo[userInfoList.Count - 1];
+            //userInfoArray = new UserInfo[userInfoList.Count];
             userInfoArray = (UserInfo[])stream.ReceiveNext();
 
             for (int i = 0; i < userInfoArray.Length; i++)

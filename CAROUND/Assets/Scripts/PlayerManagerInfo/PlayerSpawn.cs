@@ -8,7 +8,7 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
 {
     private GameObject Player;
     public Transform _PlayerSpawn;
-    public List<GameObject> PlayerSpawnList = new List<GameObject>();
+    public List<Transform> PlayerSpawnList = new List<Transform>();
     //public PlayerManager _playerManager;
     private RoomInformation roominformation;
              private List<UserInfo> UserInfo;
@@ -18,6 +18,11 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
+        PlayerSpawnList[0] = GameObject.Find("PlayerSpawn_1").GetComponent<Transform>();
+        PlayerSpawnList[1] = GameObject.Find("PlayerSpawn_2").GetComponent<Transform>();
+        PlayerSpawnList[2] = GameObject.Find("PlayerSpawn_3").GetComponent<Transform>();
+        PlayerSpawnList[3] = GameObject.Find("PlayerSpawn_4").GetComponent<Transform>();
+
         roominformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         //Player = Resources.Load("Classic_16") as GameObject;
         _PlayerSpawn = GetComponent<Transform>();

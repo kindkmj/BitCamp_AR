@@ -13,10 +13,9 @@ using Debug = UnityEngine.Debug;
 
 public class RoomInformation : InitRoomScene, IPunObservable
 {
-
+    public Text test;
     private PlayFabManager playfabmanager;
     private PanelOnOff panelonoff;
-
 
     [Header("Login")]
     //private GameObject Login;
@@ -60,10 +59,14 @@ public class RoomInformation : InitRoomScene, IPunObservable
     public bool MoveScene = false;
     public List<UserInfo> userInfoList = new List<UserInfo>();
     public string[] userInfoArray = new string[4];
+    public bool[] bReady = new bool[4];
+
     private bool bRoomManager = false;
     public string MyName;
     private string PlayerCar = "";
     public Image[] PlayerSelectCarImg=new Image[4];
+    public bool bSelectCarNotice = false;
+    public Text[] ReadyText = new Text[4];
 
     void Awake()
     {
@@ -109,6 +112,7 @@ public class RoomInformation : InitRoomScene, IPunObservable
         ServerState.text = PhotonNetwork.NetworkClientState.ToString();
     }
 
+   
     #region 서버 접속
 
     public void Connect()
@@ -348,10 +352,7 @@ public class RoomInformation : InitRoomScene, IPunObservable
         //PhotonNetwork.
     }
 
-    public void ReadyCheck()
-    {
-
-    }
+   
 
     public void GoBackToLobby()
     {
@@ -424,7 +425,30 @@ public class RoomInformation : InitRoomScene, IPunObservable
                     if (userInfoArray[j] == ab[0])
                     {
                         userInfoArray[j] = PlayerName;
+                        if (bReadyCheck[j] == true)
+                        {
+
+                            ReadyText[j].text = "";
+
+                            bReadyCheck[j] = false;
+                        }
+                        else
+                        {
+                            ReadyText[j].text = "READY";
+
+                            bReadyCheck[j] = true;
+                        }
+
                     }
+
+                    //if (userInfoArray[j] == PlayerName&&bReadyCheck[j]==true)
+                    //{
+                    //    ReadyText[j].text = "READY";
+                    //}
+                    //if (userInfoArray[j] == PlayerName && bReadyCheck[j] == false)
+                    //{
+                    //    ReadyText[j].text = "";
+                    //}
                 }
             
             }
@@ -446,6 +470,7 @@ public class RoomInformation : InitRoomScene, IPunObservable
 //            }
 //        }
     }
+
     /// <summary>
     /// 차량이 보여지는 이미지를 누르게 되면 이미지 순서에따라서 type이 나눠지게 되고 눌러진 이미지의 스프라이트 이름을 저장 PlayerCar에 저장하여 사용함
     /// </summary>
@@ -454,28 +479,52 @@ public class RoomInformation : InitRoomScene, IPunObservable
     {
         if (type == 0)
         {
-            PlayerCar = MyName +"/"+ PlayerSelectCarImg[type].sprite.name;
+            PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
+            test.text = "";
+
         }
         else if (type == 1)
         {
             PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
+            test.text = "";
         }
         else if (type == 2)
         {
             PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
+            test.text = "";
         }
         else if (type == 3)
         {
             PlayerCar = MyName + "/" + PlayerSelectCarImg[type].sprite.name;
+            test.text = "";
         }
     }
-
+    [PunRPC]
+    public void ReadyCheck(Player player)
+    {
+        
+    }
     /// <summary>
     /// 유저가 준비버튼을 눌렀을때 실행됨
     /// </summary>
     public void PlayerReady()
     {
         photonView.RPC("SetPlayerInfo",RpcTarget.MasterClient, PlayerCar);
+
+
+    }
+
+    public void SelectCarNotice()
+    {
+        if (PlayerCar == "")
+        {
+            test.text = "차를 선택해주세요";
+        }
+
+        else
+        {
+            panelonoff.PanelOn("Lobby");
+        }
     }
 }
  

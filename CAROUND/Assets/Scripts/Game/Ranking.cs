@@ -17,6 +17,9 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
     private float PlayerDistance = 0f;
     private Transform ReferencePoint;
     private Transform PlayerTransform;
+    private Dictionary<string,float> PlayerDicData = new Dictionary<string, float>();
+    public int MyRank=0;
+    public bool RankSignal = false;
     #endregion
 
 
@@ -40,10 +43,76 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
     //사용자도 데이터를 보내려면 punrpc를 이용해야 할것으로 보임.
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-
+        
     }
+<<<<<<< HEAD
     #endregion
     #region Function
+=======
+
+    public void Updata()
+    {
+        if (RankSignal == true)
+        {
+            PlayerDistance = Vector3.Distance(PlayerTransform.transform.position, ReferencePoint.transform.position);
+            SendDistanceData(_roomInformation+","+PlayerDistance);
+        }
+    }
+
+    #endregion
+
+    #region Function
+
+    /// <summary>
+    /// 전송할 데이터의 규격은 아이디,이동거리 로 할
+    /// </summary>
+    /// <param name="data">아이디,이동거리 의 데이터 가 전송됨</param>
+    public void SendDistanceData(string data)
+    {
+        photonView.RPC("PunSendDistanceData",RpcTarget.All,data);
+    }
+
+    /// <summary>
+    /// 아이디,이동거리로 들어온 데이터를 아이디 와 이동거리로 나눈뒤 PlayerDicData 에서 아이디의 키 값이 있을 경우에는 그 키의 데이터를 업데이트 해주며
+    /// 같은키가 없을 경우에는 새로 등록해준뒤 그 등록해준 값에 업데이트 해줌
+    /// </summary>
+    /// <param name="data"></param>
+    [PunRPC]
+    public void PunSendDistanceData(string data)
+    {
+        string[] dataSplit = new string[100];
+        dataSplit= data.Split(new char[1] {','});
+
+        var PlayerKeyList = PlayerDicData.Keys.ToList();
+        for (int i = 0; i < PlayerKeyList.Count; i++)
+        {
+            if (PlayerKeyList[i] == dataSplit[0])
+            {
+                PlayerDicData[dataSplit[0]] = PlayerDicData[dataSplit[0]] + float.Parse(dataSplit[1]);
+                return;
+            }
+        }
+        PlayerDicData.Add(dataSplit[0],float.Parse(dataSplit[1]));
+    }
+
+    /// <summary>
+    /// 내 랭킹정보를 조회하는 항목.MyRank에는 내 랭킹점수를 기록함.
+    /// </summary>
+    public void SetRank()
+    {
+        var PlayerValueList = PlayerDicData.Values.ToList();
+        var test = PlayerDicData[_roomInformation.MyName];
+        int index = 0;
+        for (int j = 0; j < PlayerValueList.Count; j++)
+        {
+            if (test < PlayerValueList[j])
+            {
+                index++;
+            }
+        }
+        MyRank = index;
+    }
+>>>>>>> bc9d620ec9b38561a81011b5ccbadf12c250a84e
 
     /// <summary>
     /// 내가 이동한 거리를 저장할 변수 해당 함수는 모든유저가 공통적으로 수행할 내용임

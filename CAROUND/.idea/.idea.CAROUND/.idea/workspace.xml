@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="85ec4153-199f-4277-a626-c029a70425e5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/Images/AllAxis_Outline.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/AllAxis_Outline.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/Handle_Plain.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/Handle_Plain.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Images/images.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Images/images.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Code/Editor/PunSceneSettingsFile.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Code/Editor/PunSceneSettingsFile.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/Gradient.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/Gradient.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/OutlinedSquaredBox.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/OutlinedSquaredBox.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/PunIcon-White-129.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/PunIcon-White-129.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/toHub.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/DemoHub/Sprites/toHub.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Skin/DropDown Arrow.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Skin/DropDown Arrow.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Skin/DropDown CheckMark.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Demos/Shared Assets/Skin/DropDown CheckMark.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIcon-128.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIcon-128.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp128.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp128.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp32.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp32.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp48.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp48.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp512.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Photon/PhotonUnityNetworking/Icons/PunIconApp512.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/Resources/PlayFabEditorPrefsSO.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark_off.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark_off.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark_on.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/checkmark_on.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/dashboardIcon.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/dashboardIcon.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/dashboardIconHover.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/dashboardIconHover.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/playfablogo.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabEditorExtensions/Editor/UI/Images/playfablogo.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PlayFabSdk/Shared/Editor/PlayFablogo.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PlayFabSdk/Shared/Editor/PlayFablogo.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Plugins/Editor/JetBrains/JetBrains.Rider.Unity.Editor.Plugin.Repacked.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Lime.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Lime.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Orange.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Orange.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Purple.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/DerbyCars/DerbyCars_Purple.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/F1Cars/F1Cars_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/OffRoadTrucks/OffRoadTrucks_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/RacingTrucks/RacingTrucks_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/StreetCars/StreetCars_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Black.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Black.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Blue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Blue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Green.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_Green.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_LightBlue.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/CarImages/SuperSportsCars/SuperSportsCars_LightBlue.png.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Logs/Packages-Update.log" beforeDir="false" afterPath="$PROJECT_DIR$/Logs/Packages-Update.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="Ranking.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="705">
+              <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+              <folding>
+                <marker date="1574168003600" expanded="false" signature="6:129" ph="..." />
+                <marker date="1574168003600" expanded="true" signature="195:6095" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="199:698" ph="Variable" />
+                <marker date="1574168003600" expanded="true" signature="706:1718" ph="Event" />
+                <marker date="1574168003600" expanded="true" signature="745:1068" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="1074:1323" ph="/* 마스터 클라이언트 유저는 유저들의 이름들을 모두 저장해야하고 생성되는 차량이 어떤 유저의 것인지 모두 기억해야함 ... */" />
+                <marker date="1574168003600" expanded="true" signature="1406:1427" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="1453:1702" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="1491:1696" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="1724:6087" ph="Function" />
+                <marker date="1574168003600" expanded="true" signature="1746:1868" ph="/// 전송할 데이터의 규격은 아이디,이동거리 로 할 ... " />
+                <marker date="1574168003600" expanded="true" signature="1914:1992" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="1998:2211" ph="/// 아이디,이동거리로 들어온 데이터를 아이디 와 이동거리로 나눈뒤 PlayerDicData 에서 아이디의 키 값이 있을 경우에는 그 키의 데이터를 업데이트 해주며 ... " />
+                <marker date="1574168003600" expanded="true" signature="2273:2785" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="2487:2712" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="2547:2702" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="2791:2869" ph="/// 내 랭킹정보를 조회하는 항목.MyRank에는 내 랭킹점수를 기록함. ... " />
+                <marker date="1574168003600" expanded="true" signature="2895:3246" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3100:3216" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3153:3206" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3252:3337" ph="/// 내가 이동한 거리를 저장할 변수 해당 함수는 모든유저가 공통적으로 수행할 내용임 ... " />
+                <marker date="1574168003600" expanded="true" signature="3371:3497" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3503:3681" ph="/// 마스터 클라이언트는 유저의 데이터를 지속적으로 업데이트 해줌 ... " />
+                <marker date="1574168003600" expanded="true" signature="3761:4050" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3869:4044" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="3926:4034" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="4055:4195" ph="/// 랭킹을 비교하기 위한 유저를 등록함  ... " />
+                <marker date="1574168003600" expanded="true" signature="4240:4291" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="4298:4842" ph="/* 유저의 거리를 지속적으로 업데이트 해줌?? ... */" />
+                <marker date="1574168003600" expanded="true" signature="4848:4964" ph="/// 유저의 랭킹을 정리해주는 함수 ... " />
+                <marker date="1574168003600" expanded="true" signature="5003:6071" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5194:5239" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5334:5614" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5460:5604" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5523:5590" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5731:5787" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5901:6040" ph="{...}" />
+                <marker date="1574168003600" expanded="true" signature="5991:6030" ph="/* 랭킹 보여주면 될듯. ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="676" />
+    <option name="y" value="142" />
+    <option name="width" value="1400" />
+    <option name="height" value="1000" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="UnityExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="SolutionExplorer">
+        <option name="show-file-system" value="false" />
+        <option name="show-all-items" value="false" />
+      </pane>
+      <pane id="Scratches" />
+      <pane id="UnityExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CAROUND" type="483dac07:UnityExplorerNode$Root" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CAROUND" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CAROUND" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CAROUND" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+            <path>
+              <item name="" type="ad4990d8:FileSystemViewPaneBase$ProjectViewPaneTreeStructure$createRoot$1" />
+              <item name="CAROUND" type="483dac07:UnityExplorerNode$Root" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+              <item name="" type="1045f7f1:UnityExplorerNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-hidden-items" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="85ec4153-199f-4277-a626-c029a70425e5" name="Default" comment="" />
+      <created>1574165357901</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1574165357901</updated>
+      <workItem from="1574165364288" duration="3716000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="3716000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="right" id="Errors In Solution" order="0" />
+      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info anchor="bottom" id="Unit Tests" />
+      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Terminal" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="5" visible="true" weight="0.17857143" />
+      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="1" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="2" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="NuGet" />
+      <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+    </layout>
+  </component>
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Assets/Scripts/Game/Ranking.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="705">
+          <caret line="64" column="18" lean-forward="true" selection-start-line="64" selection-start-column="18" selection-end-line="64" selection-end-column="18" />
+          <folding>
+            <marker date="1574168003600" expanded="false" signature="6:129" ph="..." />
+            <marker date="1574168003600" expanded="true" signature="195:6095" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="199:698" ph="Variable" />
+            <marker date="1574168003600" expanded="true" signature="706:1718" ph="Event" />
+            <marker date="1574168003600" expanded="true" signature="745:1068" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="1074:1323" ph="/* 마스터 클라이언트 유저는 유저들의 이름들을 모두 저장해야하고 생성되는 차량이 어떤 유저의 것인지 모두 기억해야함 ... */" />
+            <marker date="1574168003600" expanded="true" signature="1406:1427" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="1453:1702" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="1491:1696" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="1724:6087" ph="Function" />
+            <marker date="1574168003600" expanded="true" signature="1746:1868" ph="/// 전송할 데이터의 규격은 아이디,이동거리 로 할 ... " />
+            <marker date="1574168003600" expanded="true" signature="1914:1992" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="1998:2211" ph="/// 아이디,이동거리로 들어온 데이터를 아이디 와 이동거리로 나눈뒤 PlayerDicData 에서 아이디의 키 값이 있을 경우에는 그 키의 데이터를 업데이트 해주며 ... " />
+            <marker date="1574168003600" expanded="true" signature="2273:2785" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="2487:2712" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="2547:2702" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="2791:2869" ph="/// 내 랭킹정보를 조회하는 항목.MyRank에는 내 랭킹점수를 기록함. ... " />
+            <marker date="1574168003600" expanded="true" signature="2895:3246" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3100:3216" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3153:3206" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3252:3337" ph="/// 내가 이동한 거리를 저장할 변수 해당 함수는 모든유저가 공통적으로 수행할 내용임 ... " />
+            <marker date="1574168003600" expanded="true" signature="3371:3497" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3503:3681" ph="/// 마스터 클라이언트는 유저의 데이터를 지속적으로 업데이트 해줌 ... " />
+            <marker date="1574168003600" expanded="true" signature="3761:4050" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3869:4044" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="3926:4034" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="4055:4195" ph="/// 랭킹을 비교하기 위한 유저를 등록함  ... " />
+            <marker date="1574168003600" expanded="true" signature="4240:4291" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="4298:4842" ph="/* 유저의 거리를 지속적으로 업데이트 해줌?? ... */" />
+            <marker date="1574168003600" expanded="true" signature="4848:4964" ph="/// 유저의 랭킹을 정리해주는 함수 ... " />
+            <marker date="1574168003600" expanded="true" signature="5003:6071" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5194:5239" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5334:5614" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5460:5604" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5523:5590" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5731:5787" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5901:6040" ph="{...}" />
+            <marker date="1574168003600" expanded="true" signature="5991:6030" ph="/* 랭킹 보여주면 될듯. ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

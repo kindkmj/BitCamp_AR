@@ -1,50 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using Photon.Pun;
 using UnityEngine;
 
-/*
-public class PlayerManager : MonoBehaviour
+public class PlayerManager : MonoBehaviourPunCallbacks
 {
-    private List<string> PlayerList = new List<string>();
-    public List<UserInfo> UserList = new List<UserInfo>();
-
-    private UserInfo FiUser;
-    private UserInfo SeUser;
-    private UserInfo ThUser;
-    private UserInfo FoUser;
-
-
-    //InGamePlayUIManager 에서 초기화를 진행함.
-    public void initPlayerInfo()
+    private RewardSetUp _rewardSetUp;
+    private CheckPoint _CheckPoint;
+    public int PlayerCheckPointCount = 0;
+    public Dictionary<string, int> DicPlayerCheckPoint = new Dictionary<string, int>();
+    public Dictionary<string, int> DicPlayerRank = new Dictionary<string, int>();
+    public List<string> RankList = new List<string>();
+    private bool Signal=false;
+    private void Start()
     {
-        for (int i = 0; i < PlayerList.Count; i++)
+        _CheckPoint = GameObject.Find("").GetComponent<CheckPoint>();
+        _rewardSetUp = GameObject.Find("").GetComponent<RewardSetUp>();
+    }
+
+    /// <summary>
+    /// 3바퀴를 돌았는지 지속적으로 체크를함
+    /// </summary>
+    private void Update()
+    {
+        if (Signal == true)
         {
-            if (i == 0 && PlayerList[i] != null)
+            var DicKeys = DicPlayerCheckPoint.Keys.ToList();
+            for (int i = 0; i < DicKeys.Count; i++)
             {
-                FiUser = new UserInfo(PlayerList[0], 0,false);
-                UserList.Add(FiUser);
-            }
-            else if (i == 1 && PlayerList[i] != null)
-            {
-                SeUser = new UserInfo(PlayerList[1], 0, false);
-                UserList.Add(SeUser);
-            }
-            else if (i == 2 && PlayerList[i] != null)
-            {
-                ThUser = new UserInfo(PlayerList[2], 0, false);
-                UserList.Add(ThUser);
-            }
-            else if (i == 3 && PlayerList[i] != null)
-            {
-                FoUser = new UserInfo(PlayerList[3], 0, false);
-                UserList.Add(FoUser);
+                if (DicKeys[i] == _CheckPoint.Myname)
+                {
+                    if (DicPlayerCheckPoint[_CheckPoint.Myname] == 3)
+                    {
+                        _rewardSetUp.ViewRank(_CheckPoint.Myname);
+                        Signal = false;
+                    }
+                }
+                else if (DicPlayerCheckPoint[_CheckPoint.Myname] != 3)
+                {
+                    Signal = true;
+                }
             }
         }
+        //게임종료 문구 및 보상화면으로 이동
     }
-    //유저의 닉네임을 add해주기.
-    public void SetPlayerInfo(string _gameObject)
+
+    public void PlayerCountUpdate(string data, int point)
     {
-        PlayerList.Add(_gameObject);
+        photonView.RPC("PunPlayerCountUpdate", RpcTarget.All,data,point);
     }
+    [PunRPC]
+    public void PunPlayerCountUpdate(string data,int point)
+    {
+        var test = DicPlayerCheckPoint.Keys.ToList();
+        for (int i = 0; i < DicPlayerCheckPoint.Count; i++)
+        {
+            if(test[i]==data)
+            {
+                DicPlayerCheckPoint[test[i]] = point;
+                return;
+            }
+        }
+        DicPlayerCheckPoint.Add(data,point);
+    }
+
 }
-*/

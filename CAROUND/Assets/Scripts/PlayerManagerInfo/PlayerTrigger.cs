@@ -6,30 +6,18 @@ using UnityEngine.SceneManagement;
 public class PlayerTrigger : MonoBehaviour
 {
     private CheckPoint checkPoint;
-    private bool CheckActiveScene = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().name.Trim() == "GameScene")
-        {
-            checkPoint = GameObject.Find("CheckPoint").GetComponent<CheckPoint>();
-            CheckActiveScene = true;
-        }
-        else if (SceneManager.GetActiveScene().name.Trim() != "GameScene")
-        {
-            CheckActiveScene = false;
-        }
+        checkPoint = GameObject.Find("CheckPoint").GetComponent<CheckPoint>();
     }
 
     void OnTriggerEnter(Collider other)
     {
-        if (CheckActiveScene == true)
+        if (other.name.StartsWith("Ch"))
         {
-            if (other.name.StartsWith("Ch"))
-            {
-                checkPoint.CountCheck(other.name);
-            }
+            checkPoint.CountCheck(other.name);
         }
     }
 }

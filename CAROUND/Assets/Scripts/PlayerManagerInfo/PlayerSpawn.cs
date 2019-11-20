@@ -7,12 +7,9 @@ using UnityEngine;
 public class PlayerSpawn : GameSceneManager
 {
     public csTouchMgr _csTouchMgr;
-    private GameObject Player;
     public Transform _PlayerSpawn;
     public List<Transform> PlayerSpawnList = new List<Transform>();
     private RoomInformation roominformation;
-             private List<UserInfo> UserInfo;
-    private string MyName;
 
     //public List<UserInfo> UserInfo;
 
@@ -38,6 +35,7 @@ public class PlayerSpawn : GameSceneManager
             Invoke("CheckMap", 0.1f);
         }
     }
+
     public void InitSpawnInfo()
     {
         PlayerSpawnList[0] = GameObject.Find("PlayerSpawn_1").GetComponent<Transform>();
@@ -48,8 +46,8 @@ public class PlayerSpawn : GameSceneManager
         roominformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         //Player = Resources.Load("Classic_16") as GameObject;
         _PlayerSpawn = GetComponent<Transform>();
-        UserInfo = roominformation.userInfoList;
-        MyName = roominformation.MyName;
+//        UserInfo = roominformation.userInfoList;
+//        MyName = roominformation.MyName;
         ViewCar();
         GameUI.SetActive(true);
     }

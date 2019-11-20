@@ -45,11 +45,6 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
     {
         
     }
-<<<<<<< HEAD
-    #endregion
-    #region Function
-=======
-
     public void Updata()
     {
         if (RankSignal == true)
@@ -58,10 +53,10 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
             SendDistanceData(_roomInformation+","+PlayerDistance);
         }
     }
-
     #endregion
-
     #region Function
+
+
 
     /// <summary>
     /// 전송할 데이터의 규격은 아이디,이동거리 로 할
@@ -112,7 +107,6 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
         }
         MyRank = index;
     }
->>>>>>> bc9d620ec9b38561a81011b5ccbadf12c250a84e
 
     /// <summary>
     /// 내가 이동한 거리를 저장할 변수 해당 함수는 모든유저가 공통적으로 수행할 내용임

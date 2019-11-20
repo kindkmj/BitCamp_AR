@@ -4,19 +4,41 @@ using JetBrains.Annotations;
 using Photon.Pun;
 using UnityEngine;
 
-public class PlayerSpawn : MonoBehaviourPunCallbacks
+public class PlayerSpawn : GameSceneManager
 {
+    public csTouchMgr _csTouchMgr;
     private GameObject Player;
     public Transform _PlayerSpawn;
     public List<Transform> PlayerSpawnList = new List<Transform>();
-    //public PlayerManager _playerManager;
     private RoomInformation roominformation;
              private List<UserInfo> UserInfo;
     private string MyName;
 
     //public List<UserInfo> UserInfo;
+
     // Start is called before the first frame update
-    void Start()
+    public void Start()
+    {
+        _csTouchMgr = GameObject.Find("ARManager").GetComponent<csTouchMgr>();
+        Invoke("CheckMap", 0.1f);
+    }
+
+    /// <summary>
+    /// 마치 update문처럼 반복하면서 맵이 있는지 없는지 체크
+    /// 맵이 있다면 더이상 실행하지 않으며 유저가 소환될수 있도록 모든정보를 셋팅함
+    /// </summary>
+    public void CheckMap()
+    {
+        if (_csTouchMgr.Type == true)
+        {
+            InitSpawnInfo();
+        }
+        else if (_csTouchMgr.Type == false)
+        {
+            Invoke("CheckMap", 0.1f);
+        }
+    }
+    public void InitSpawnInfo()
     {
         PlayerSpawnList[0] = GameObject.Find("PlayerSpawn_1").GetComponent<Transform>();
         PlayerSpawnList[1] = GameObject.Find("PlayerSpawn_2").GetComponent<Transform>();
@@ -29,6 +51,7 @@ public class PlayerSpawn : MonoBehaviourPunCallbacks
         UserInfo = roominformation.userInfoList;
         MyName = roominformation.MyName;
         ViewCar();
+        GameUI.SetActive(true);
     }
     public void ViewCar()
     {

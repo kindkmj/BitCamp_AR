@@ -494,7 +494,7 @@ GameObject:
   - component: {fileID: 261802278}
   - component: {fileID: 261802277}
   m_Layer: 0
-  m_Name: AR
+  m_Name: ARManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

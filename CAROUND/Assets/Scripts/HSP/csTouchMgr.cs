@@ -11,7 +11,8 @@ using Object = UnityEngine.Object;
 
 public class csTouchMgr : MonoBehaviourPun
 {
-    public Object placeObject;  // 생성할 오브젝트의 프리팹
+    public bool Type = false;
+    public Object placeObject; // 생성할 오브젝트의 프리팹
     public Text test;
     private ARRaycastManager raycastMgr;
 
@@ -24,7 +25,7 @@ public class csTouchMgr : MonoBehaviourPun
     // Start is called before the first frame update
     void Start()
     {
-        raycastMgr = GetComponent<ARRaycastManager>();  //스크립트 객체를 얻어옴
+        raycastMgr = GetComponent<ARRaycastManager>(); //스크립트 객체를 얻어옴
     }
 
     // Update is called once per frame
@@ -32,12 +33,13 @@ public class csTouchMgr : MonoBehaviourPun
     {
         try
         {
-                    test.text = map.transform.position.ToString();
+            test.text = map.transform.position.ToString();
         }
         catch (Exception ex)
         {
             test.text = "아직 생성되지않음";
         }
+
         if (Input.touchCount == 0)
             return;
 
@@ -49,7 +51,8 @@ public class csTouchMgr : MonoBehaviourPun
             {
                 if (map == null)
                 {
-                map = (GameObject)Instantiate(placeObject, hits[0].pose.position, hits[0].pose.rotation);
+                    map = (GameObject) Instantiate(placeObject, hits[0].pose.position, hits[0].pose.rotation);
+                    Type = true;
                 }
             }
         }

@@ -28,7 +28,6 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
         _roomInformation = GameObject.Find("RoomManager").GetComponent<RoomInformation>();
         ReferencePoint = GameObject.Find("CenterPoint").GetComponent<Transform>();
         PlayerTransform = GameObject.Find(_roomInformation.MyName).GetComponent<Transform>();
-
         AddUser(_roomInformation.MyName);
     }
 
@@ -43,14 +42,7 @@ public class Ranking : MonoBehaviourPunCallbacks ,IPunObservable
     {
 
     }
-
-
-
-
-
-
     #endregion
-
     #region Function
 
     /// <summary>
